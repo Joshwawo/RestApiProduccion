@@ -9,19 +9,9 @@ const fetchPedidos = async() =>{
 
     let output = '';
     let output2 = '';
-    // let total = 'holas';
-
-    
-
 
     data.forEach(producto => {
 
-        // const productos ={
-        //     id: data.id_pedido,
-        //     name: data.estado_Pedido,
-        //     estado_Pedido:data.estado_Pedido
-        // }
-        
     
         console.log(producto.estado_Pedido);
 
@@ -193,6 +183,8 @@ const fetchPedidos = async() =>{
 
         `;
     });
+
+    
 
 
 
