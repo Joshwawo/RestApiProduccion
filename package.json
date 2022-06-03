@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
-    "start": "node app"
+    "start": "node app",
+    "build:css": "postcss ./src/tailwind.css -o ./public/css/main.css"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +17,8 @@
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.0.24"
   }
 }
