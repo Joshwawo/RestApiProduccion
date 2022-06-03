@@ -21,10 +21,10 @@ app.use(express.json({
 }));
 
 const conn = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'produccion'
+    host: 'us-cdbr-east-05.cleardb.net',
+    user: 'b990083e7d850e',
+    password: '95b7e22f',
+    database: 'heroku_7aebcab0f2d79c9'
 });
 
 conn.connect(function (err) {
