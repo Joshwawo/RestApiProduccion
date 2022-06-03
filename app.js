@@ -73,19 +73,37 @@ app.post('/api/pedido', (req, res) => {
     });
 });
 
-app.post('/api/pedido', (req, res) => {
-    const sql = 'INSERT INTO pedido SET ?';
-    const pedidoObjP = {
-        estado: req.body.estado,
-        id_producto: req.body.id_producto
-    }
+///bk
+// app.post('/api/pedido', (req, res) => {
+//     const sql = 'INSERT INTO pedido SET ?';
+//     const pedidoObjP = {
+//         // cantidadPedido:req.body.cantidadPedido,
+//         id_pedido: req.body.id_pedido,
+//         nombreProducto: req.body.nombreProducto,
+//         cantidad: req.body.cantidad,
+//     }
 
-    conn.query(sql, pedidoObjP, error => {
-        if (error) throw error;
-        res.send('Pedido Creado');
+//     conn.query(sql, pedidoObjP, error => {
+//         if (error) throw error;
+//         res.send('Pedido Creado');
 
-    });
-});
+//     });
+// });
+
+
+// app.post('/api/pedido', (req, res) => {
+//     const sql = 'INSERT INTO pedido SET ?';
+//     const pedidoObjP = {
+//         estado: req.body.estado,
+//         id_producto: req.body.id_producto
+//     }
+
+//     conn.query(sql, pedidoObjP, error => {
+//         if (error) throw error;
+//         res.send('Pedido Creado');
+
+//     });
+// });
 
 
 app.put('/api/actualizar/:id', (req, res) => {
