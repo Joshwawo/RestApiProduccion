@@ -52,7 +52,7 @@ app.get('/Pruebas', (req, res) => {
         if(resultadoPrueba.length > 0){
             res.json(resultadoPrueba)
         }else{
-            console.log("Nada")
+            console.log("No se encontro el registro marcado")
         }
     });
 });
