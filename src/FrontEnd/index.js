@@ -3,7 +3,7 @@
 // const { default: axios } = require("axios");
 
 const getProductos = async () => {
-
+ //sdasd
     try {
         //!Api de practica 
         const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
