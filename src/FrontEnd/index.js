@@ -69,8 +69,8 @@ const getProductos = async () => {
             console.log(producto.cantidad);
             console.log(producto.precio);
             console.log(producto.estado_Pedido);
-
-            await axios.post('https://api-produccion.herokuapp.com/api/pedido', {
+    
+            axios.post('https://api-produccion.herokuapp.com/api/pedido', {
                 id_pedido: producto.id_pedido,
                 nombreproducto: producto.nombreproducto,
                 cantidad: producto.cantidad,
