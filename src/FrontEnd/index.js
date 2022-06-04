@@ -8,7 +8,10 @@ const getProductos = async () => {
         //!Api de practica 
         const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
         const data = respuesta.data;
-        console.log(data);
+        
+        console.log(data[0].nombreproducto);
+
+
 
 
 
@@ -65,30 +68,30 @@ const getProductos = async () => {
         // let precio = document.getElementById('precio').value;
         // let estado_Pedido = document.getElementById('estado_Pedido').value;
 
-        await data.forEach(producto => {
-            console.log(producto.id_pedido);
+        // await data.forEach(producto => {
+        //     console.log(producto.id_pedido);
 
 
 
-            axios.post('https://api-produccion.herokuapp.com/api/pedido', {
-                id_pedido: producto.id_pedido,
-                nombreproducto: producto.nombreproducto,
-                cantidad: producto.cantidad,
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
+        //     axios.post('https://api-produccion.herokuapp.com/api/pedido', {
+        //         id_pedido: producto.id_pedido,
+        //         nombreproducto: producto.nombreproducto,
+        //         cantidad: producto.cantidad,
+        //     }, {
+        //         headers: {
+        //             'Content-Type': 'application/json'
 
-                }
+        //         }
 
-            })
-                .then(response => {
-                    console.log(response);
-                    // alert('Pedido agregado');
-                    // getProductos();
-                })
+        //     })
+        //         .then(response => {
+        //             console.log(response);
+        //             // alert('Pedido agregado');
+        //             // getProductos();
+        //         })
 
 
-        })
+        // })
 
 
 
