@@ -11,7 +11,7 @@ const getProductos = async () => {
         console.log(data);
 
         if (respuesta.status === 200) {
-            let listaProducto = '';
+            let listaProducto = 'a';
 
             /*
             !Lo que voy a recibir de la API
