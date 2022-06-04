@@ -64,6 +64,7 @@ app.post('/api/pedido', (req, res) => {
         id_pedido: req.body.id_pedido,
         nombreproducto: req.body.nombreproducto,
         cantidad: req.body.cantidad,
+        estado: req.body.estado,
     }
 
     conn.query(sql, pedidoObjP, error => {
