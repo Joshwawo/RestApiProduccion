@@ -6,7 +6,7 @@ const fetchPedidos = async() =>{
     console.log(data);
 
     
-
+/* Wenas */
     let output = '';
     let output2 = '';
 
