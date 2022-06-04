@@ -40,8 +40,23 @@ setInterval(() => {
 }, 5000);
 
 app.get('/', (req, res) => {
-    res.send('hola desde la api de produccion')
+    res.send('hola desde la api de produccion');
 });
+
+/*Endpoint prueba */
+app.get('/Pruebas', (req, res) => {
+    //res.send('hola desde la api de produccion')
+    const prueba = "Select id_pedido from pedido where id_pedido = 1794";
+    conn.query(prueba, (error, resultadoPrueba)=>{        
+        if(error) throw error;
+        if(resultadoPrueba.length > 0){
+            res.json(resultadoPrueba)
+        }else{
+            console.log("Nada")
+        }
+    });
+});
+
 
 app.get('/api/pedido', (req, res) => {
     // res.send('hola desde producto')
@@ -56,6 +71,7 @@ app.get('/api/pedido', (req, res) => {
         }
     });
 });
+
 
 app.post('/api/pedido', (req, res) => {
     const sql = 'INSERT INTO pedido SET ?';
