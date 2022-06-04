@@ -10,6 +10,8 @@ const getProductos = async () => {
         const data = respuesta.data;
         console.log(data);
 
+
+
         if (respuesta.status === 200) {
             let listaProducto = '';
 
@@ -63,13 +65,11 @@ const getProductos = async () => {
         // let precio = document.getElementById('precio').value;
         // let estado_Pedido = document.getElementById('estado_Pedido').value;
 
-        await data.forEach(producto  => {
+        await data.forEach(producto => {
             console.log(producto.id_pedido);
-            console.log(producto.nombreproducto);
-            console.log(producto.cantidad);
-            console.log(producto.precio);
-            console.log(producto.estado_Pedido);
-    
+
+
+
             axios.post('https://api-produccion.herokuapp.com/api/pedido', {
                 id_pedido: producto.id_pedido,
                 nombreproducto: producto.nombreproducto,
