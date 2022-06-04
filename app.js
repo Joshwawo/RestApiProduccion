@@ -62,7 +62,7 @@ app.post('/api/pedido', (req, res) => {
     const pedidoObjP = {
         // cantidadPedido:req.body.cantidadPedido,
         id_pedido: req.body.id_pedido,
-        nombreProducto: req.body.nombreProducto,
+        nombreproducto: req.body.nombreproducto,
         cantidad: req.body.cantidad,
     }
 

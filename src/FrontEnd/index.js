@@ -3,7 +3,7 @@
 // const { default: axios } = require("axios");
 
 const getProductos = async () => {
- //sdasd
+    //sdasd
     try {
         //!Api de practica 
         const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
@@ -53,19 +53,27 @@ const getProductos = async () => {
             console.log(data[0].id_pedido);
         }
 
-        const formulario = document.getElementById('formulario');
+        // const formulario = document.getElementById('formulario');
 
-        formulario.addEventListener('submit', async (evento) => {
-            evento.preventDefault();
-            console.log('Hola me diste click')
-            // console.log(data);
-            let cantidad = document.getElementById('cantidad').value;
-            let precio = document.getElementById('precio').value;
-            let estado_Pedido = document.getElementById('estado_Pedido').value;
+
+        // evento.preventDefault();
+        // console.log('Hola me diste click')
+        // console.log(data);
+        // let cantidad = document.getElementById('cantidad').value;
+        // let precio = document.getElementById('precio').value;
+        // let estado_Pedido = document.getElementById('estado_Pedido').value;
+
+        await data.forEach(producto  => {
+            console.log(producto.id_pedido);
+            console.log(producto.nombreproducto);
+            console.log(producto.cantidad);
+            console.log(producto.precio);
+            console.log(producto.estado_Pedido);
+
             await axios.post('https://api-produccion.herokuapp.com/api/pedido', {
-                id_pedido: data.id_pedido,
-                cantidad: data.cantidad,
-                estado_Pedido: data.estado_Pedido,
+                id_pedido: producto.id_pedido,
+                nombreproducto: producto.nombreproducto,
+                cantidad: producto.cantidad,
             }, {
                 headers: {
                     'Content-Type': 'application/json'
@@ -79,7 +87,11 @@ const getProductos = async () => {
                     // getProductos();
                 })
 
+
         })
+
+
+
 
 
     } catch (error) {
