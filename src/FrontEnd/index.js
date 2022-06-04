@@ -72,7 +72,7 @@ const getProductos = async () => {
 
         // await data.forEach(producto => {
         //     console.log(producto.id_pedido);
-
+        //     console.log(producto.nombreproducto);
 
         console.log(data[data.length - 1].nombreproducto);
 
