@@ -13,21 +13,48 @@
 
 <body class="dark:bg-gray-900 h-screen">
 
-    <!-- <table class="">
+    <table class=" m-auto">
         <thead class=" bg-yellow-100 border-b-2 ">
             <tr>
                 <th class="p-3 text-sm font-semibold tracking-wide text-left">ID Pedido</th>
-                <th class="p-3 text-sm font-semibold tracking-wide text-left">Cantidad</th>
-                <th class="p-3 text-sm font-semibold tracking-wide text-left">Estado Del pedido</th>
+                <th class="p-3 text-sm font-semibold tracking-wide text-left">Nombre Producto</th>
+                <th class="p-3 text-sm font-semibold tracking-wide text-left">Cantidad </th>
+                
             </tr>
         </thead>
 
         <tbody id="productos">
 
         </tbody>
-    </table> -->
+    </table>
 
-    <div class=" ">
+    <!-- Esto nomas es una prueba para probar el post -->
+
+    <form id="formulario" class="bg-orange-600 px-10 py-10">
+
+        <div>
+            <label for="cantidad" class="text-white" >Cantidad</label>
+            <input type="number" id="cantidad" class="my-2 px-1 flex">
+        </div>
+
+        <div>
+            <label for="precio" class="text-white">Precio</label>
+            <input type="number" id="precio" class="my-2 px-1 flex">
+            
+        </div>
+
+        <div>
+            <label for="estado_Pedido" class="text-white">estado Pedido</label>
+            <input type="text" id="estado_Pedido" class="my-2 px-1 flex">
+        </div>
+
+
+        <div class="py-1 pt-3">
+            <button type="submit" class="bg-blue-600 font-bold py-2 px-2 rounded-xl">Enviar</button>
+        </div>
+    </form>
+
+    <!-- <div class=" ">
        
         
         <h1 class="font-bold py-14 text-center uppercase text-3xl text-white">Pedidos</h1>
@@ -62,10 +89,10 @@
       
         
 
-    </div>
+    </div> -->
 
 
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./index.js"></script>
 
 </body>

@@ -1,0 +1,51 @@
+else if(respuesta.status === 401){
+            console.log('401 Unauthorized');
+        }else if(respuesta.status === 500){
+            console.log('500 Internal Server Error');
+        }else if(respuesta.status === 404){
+            console.log('404 Not Found');
+        }else if(respuesta.status === 400){
+            console.log('400 Bad Request');
+        }else if(respuesta.status === 403){
+            console.log('403 Forbidden');
+        }else if(respuesta.status === 409){
+            console.log('409 Conflict');
+        }else if(respuesta.status === 406){
+            console.log('406 Not Acceptable');
+        }else if(respuesta.status === 413){
+            console.log('413 Payload Too Large');
+        }else if(respuesta.status === 415){
+            console.log('415 Unsupported Media Type');
+        }else if(respuesta.status === 422){
+            console.log('422 Unprocessable Entity');
+        }else if(respuesta.status === 429){
+            console.log('429 Too Many Requests');
+        }else if(respuesta.status === 501){
+            console.log('501 Not Implemented');
+        }else if(respuesta.status === 503){
+            console.log('503 Service Unavailable');
+        }else if(respuesta.status === 504){
+            console.log('504 Gateway Timeout');
+        }else if(respuesta.status === 505){
+            console.log('505 HTTP Version Not Supported');
+        }else if(respuesta.status === 507){
+            console.log('507 Insufficient Storage');
+        }else if(respuesta.status === 510){
+            console.log('510 Not Extended');
+        }else if(respuesta.status === 511){
+            console.log('511 Network Authentication Required');
+        }else if(respuesta.status === 520){
+            console.log('520 Unknown Error');
+        }else if(respuesta.status === 522){
+            console.log('522 Origin Connection Time-out');
+        }else if(respuesta.status === 524){
+            console.log('524 A Timeout Occurred');
+        }else if(respuesta.status === 530){
+            console.log('530 Site is frozen');
+        }else if(respuesta.status === 598){
+            console.log('598 Network read timeout error');
+        }else if(respuesta.status === 599){
+            console.log('599 Network connect timeout error');
+        }else{
+            console.log('Hubo un error y no sabemos la causa'); 
+        }
