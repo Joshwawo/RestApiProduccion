@@ -96,7 +96,9 @@ app.get('/api/pedido2', (req, res) => {
 
 
 app.post('/api/pedido', (req, res) => {
-    const sql = 'IF NOT EXIST INSERT INTO pedido SET ? ';
+    const sql = ' INSERT INTO pedido SET ? ; SELECT * FROM pedido';
+
+    console.log(sql);
     const pedidoObjP = {
         // cantidadPedido:req.body.cantidadPedido,
         id_pedido: req.body.id_pedido,
