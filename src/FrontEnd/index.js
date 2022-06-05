@@ -156,7 +156,7 @@ const putProducto = async () => {
 
 
 
-// getProductos();
+getProductos();
 
 
 
