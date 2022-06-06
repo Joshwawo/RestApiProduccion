@@ -12,10 +12,10 @@
 </head>
 
 <body class="dark:bg-gray-900 h-screen">
-    <button class="bg-green-300 rounded-sm px-2 py-3" onclick="getProductos()">Pedidos</button>
+    <!-- <button class="bg-green-300 rounded-sm px-2 py-3" onclick="getProductos()">Pedidos</button>
     <button class="bg-green-300 rounded-sm px-2 py-3" onclick="putProducto()"> Put dato</button>
     <button class="bg-green-300 rounded-sm px-2 py-3" onclick="prueba()"> PRUEBA ACTUALIZAR</button>
-    <button class="bg-green-300 rounded-sm px-2 py-3" onclick="postProductos()"> Post</button>
+    <button class="bg-green-300 rounded-sm px-2 py-3" onclick="postProductos()"> Post</button> -->
     <button class="bg-green-300 rounded-sm px-2 py-2 ">Holas</button>
 
 
@@ -116,7 +116,7 @@
         const getPdito = async () => {
             console.log('me estas haciendo post de productos')
 
-            const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
+            const respuesta = await axios.get('https://api-produccion.herokuapp.com/api/pedido');
             const data = respuesta.data;
             console.log(data);
 
@@ -124,7 +124,11 @@
             if (respuesta.status === 200) {
 
                 await data.forEach(producto => {
-                    console.log(producto.estado);
+                    if (producto.estado === 'Listo') {
+                        // document.getElementById('pendiente').innerHTML = 'Entregado';
+                        console.log(producto.estado);
+
+                    }
 
 
 
