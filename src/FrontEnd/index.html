@@ -33,10 +33,10 @@
     </table> -->
 
     <div class=" ">
-        <p class="text-center text-white text-3xl">Pedidos</p>
-        <div class=" flex justify-center">
-            <button class="bg-yellow-300 rounded-sm px-2 py-3" onclick="getProductos()">Pedidos</button>
-            <button class=" rounded-sm px-2 py-3" onclick="postProductos()"> </button>
+        <p class="text-center text-white text-3xl mb-5 pt-5">Pedidos</p>
+        <div class=" flex justify-center mb-10">
+            <button class="bg-yellow-300 rounded-sm px-1 py-1" onclick="getProductos()">Pedidos</button>
+            <button class=" rounded-sm px-1 py-1" " onclick="postProductos()"> </button>
         </div>
         <div id="productos" class="">
 
@@ -70,8 +70,8 @@
                         listaProducto += `
                         <div id="card">
         <div class="flex items-center justify-center py-4 px-4">
-        <div class="md:w-96 rounded-md shadow-lg p-5 bg-black bg-white">
-            <h1 class="pt-2 pb-7 text-gray-800 dark:text-gray-100-500/100 font-bold text-lg">Pedido</h1>
+        <div class="md:w-96 rounded-md shadow-lg p-5 bg-black/50 ">
+            <h1 class="pt-2 pb-7 text-gray-800 dark:text-gray-100 font-bold text-lg">Pedido</h1>
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
                     <div class="">
@@ -94,7 +94,7 @@
                     <a href="javascript:void(0)"
                         class="focus:outline-none focus:underline focus:text-gray-400 text-gray-600 dark:text-gray-100 ">
                         <p class=" text-sm font-medium pl-3">Nombre Producto </p>
-                        <p class=" px-2.5">${producto.nombreproducto} <span>(${producto.cantidad})</span></p>
+                        <p class=" px-2.5">${producto.nombreproducto} <span>(${producto.cantidad}) <input type="checkbox" name="" id="" class="accent-amber-600 pb-3"> </span> </p>
                         
                                 
                     </a>
