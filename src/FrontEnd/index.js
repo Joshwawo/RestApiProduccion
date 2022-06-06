@@ -15,17 +15,18 @@ const getProductos = async () => {
         const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
         const data = respuesta.data;
         // console.log(data[0].estado_Pedido === 'Pendiente');
-        console.log(data)
-        data.forEach(pedido =>{
-            console.log(pedido.estado_Pedido == 'Pendiente');
-            // console.log('pendiente');
-        })
+        // console.log(data)
+        // data.forEach(pedido => {
+        //     console.log(pedido.estado_Pedido == 'Pendiente');
+        //     // console.log('pendiente');
+        // })
         // console.log(data[0].nombreproducto);
 
         // console.log(data[data.length - 1].nombreproducto);
 
         if (respuesta.status === 200) {
             let listaProducto = '';
+
 
             /*
             !Lo que voy a recibir de la API
@@ -37,18 +38,18 @@ const getProductos = async () => {
             data.forEach(producto => {
 
 
-                if (data.estado_Pedido == 'Pendiente') {
-                    console.log('pendiente');
-                }
+                // if (data.estado_Pedido == 'Pendiente') {
+                //     console.log('pendiente');
+                // }
                 listaProducto += `
             <table class="">
         </tr>
             <tbody class="">
                 <tr class=" bg-lime-100">
                     <td class="p-3 text-semibol text-black ">${producto.id_pedido}</td>
-                    <td class="p-3 text-semibol text-black ">${producto.nombreproducto} <input type="checkbox" name="" id="${producto.id_pedido}"> <input type="checkbox" name="" id="${producto.id_pedido}"> <input type="checkbox" name="" id="${producto.id_pedido}"> <input type="checkbox" name="" id="${producto.id_pedido}">  </td>
+                    <td class="p-3 text-semibol text-black ">${producto.nombreproducto} <input type="checkbox"  </td>
                     <td id="pendiente" class="p-3 text-semibol text-black ">${producto.cantidad}</td>
-                    <td id="" class="p-3 text-semibol text-black ">${producto.estado_Pedido} <input type="checkbox" onclick="putListo()"> <input type="checkbox" onclick="put()"></td>
+                    <td id="" class="p-3 text-semibol text-black ">${producto.estado_Pedido} <input type="checkbox" id="${producto.id_pedido}"   onclick="putProducto()"> </td>
                     
                 </tr>
             </tbody>
@@ -56,33 +57,53 @@ const getProductos = async () => {
         
             `;
 
+
+
                 document.getElementById('productos').innerHTML = listaProducto;
 
-                const listo = document.getElementById(producto.id_pedido);
-                listo.addEventListener('click', () => {
-                    console.log('Hola me diste click')
-                })
+
+                // const listo = document.getElementById('ids');
+                // listo.addEventListener('click', () => {
+                //     console.log('Hola me diste click')
+                // })
 
             });
 
             // console.log(data[0].id_pedido);
         }
+        let test = data[data.length - 1].id_pedido;
 
-        // const formulario = document.getElementById('formulario');
 
-
-        // evento.preventDefault();
-        // console.log('Hola me diste click')
-        // console.log(data);
-        // let cantidad = document.getElementById('cantidad').value;
-        // let precio = document.getElementById('precio').value;
-        // let estado_Pedido = document.getElementById('estado_Pedido').value;
-
-        // await data.forEach(producto => {
-        //     console.log(producto.id_pedido);
-        //     console.log(producto.nombreproducto);
+    
 
         console.log(data[data.length - 1].nombreproducto);
+
+
+        // const putProducto = async () => {
+
+        //     try {
+        //         //!Api de practica
+
+        //         await axios.put(`https://api-produccion.herokuapp.com/api/actualizar/` + test, {
+        //             estado: 'Listo'
+
+        //         }), {
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //             }
+        //         }
+
+
+        //         //
+
+
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+
+
+        // }
+        // putProducto();
 
 
 
@@ -104,7 +125,9 @@ const getProductos = async () => {
                 // getProductos();
             })
 
-            
+
+
+
 
 
 
@@ -115,7 +138,7 @@ const getProductos = async () => {
         console.log(error);
     }
 
-   
+
 
     // getProductos();
 
@@ -123,19 +146,19 @@ const getProductos = async () => {
 
 }//!Fin getProductos
 
-const prueba= () =>{
+const prueba = () => {
     console.log('Hola')
 }
 
 
 const putProducto = async () => {
-
+    console.log('hola me diste click putproducto')
 
     try {
         //!Api de practica
 
-        await axios.put(`https://api-produccion.herokuapp.com/api/actualizar/1864`, {
-            estado: 'Listenouwa'
+        await axios.put(`https://api-produccion.herokuapp.com/api/actualizar/1944`, {
+            estado: 'Listo'
 
         }), {
             headers: {
@@ -145,7 +168,7 @@ const putProducto = async () => {
 
 
         //
-    
+
 
     } catch (error) {
         console.log(error);
@@ -156,7 +179,7 @@ const putProducto = async () => {
 
 
 
-// getProductos();
+getProductos();
 
 
 

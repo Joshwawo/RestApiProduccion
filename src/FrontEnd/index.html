@@ -13,21 +13,31 @@
 
 <body class="dark:bg-gray-900 h-screen">
     <button class="bg-green-300 rounded-sm px-2 py-3" onclick="getProductos()">Pedidos</button>
-    <button class="bg-green-300 rounded-sm px-2 py-3" onclick="putProducto()" > PRUEBA ACTUALIZAR</button>
+    <button class="bg-green-300 rounded-sm px-2 py-3" onclick="putProducto()"> Put dato</button>
+    <button class="bg-green-300 rounded-sm px-2 py-3" onclick="prueba()"> PRUEBA ACTUALIZAR</button>
     <table class=" m-auto">
         <thead class=" bg-yellow-100 border-b-2 ">
             <tr>
                 <th class="p-3 text-sm font-semibold tracking-wide text-left">ID Pedido</th>
                 <th class="p-3 text-sm font-semibold tracking-wide text-left">Nombre Producto</th>
-                <th class="p-3 text-sm font-semibold tracking-wide text-left" >Cantidad </th>
-                <th class="p-3 text-sm font-semibold tracking-wide text-left" >Estado del pedido </th>
-                
+                <th class="p-3 text-sm font-semibold tracking-wide text-left">Cantidad </th>
+                <th class="p-3 text-sm font-semibold tracking-wide text-left">Estado del pedido </th>
+
                 <!-- <input type="checkbox" name="" id=""> -->
-                
+
             </tr>
         </thead>
 
         <tbody id="productos">
+
+
+
+            <tr class="text-white">
+                <th class="p-3 text-sm font-semibold tracking-wide text-left">ID Pedido</th>
+                <th class="p-3 text-sm font-semibold tracking-wide text-left">Nombre Producto</th>
+                <th class="p-3 text-sm font-semibold tracking-wide text-left">Cantidad </th>
+                <th class="p-3 text-sm font-semibold tracking-wide text-left">Estado del pedido </th>
+            </tr>
 
         </tbody>
     </table>
@@ -97,7 +107,102 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="./index.js"></script>
+
+    <script>
+
+        const getProductos = async () => {
+            //sdasd
+            try {
+                //!Api de practica 
+                const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
+                const data = respuesta.data;
+
+                if (respuesta.status === 200) {
+                    let listaProducto = '';
+                    /*
+                    !Lo que voy a recibir de la API
+                    *Id_pedido
+                    *NombreProducto
+                    *Cantidad
+                    */
+
+                    data.forEach(producto => {
+                        listaProducto += `
+            <table class="">
+        </tr>
+            <tbody class="">
+                <tr class=" bg-lime-100">
+                    <td class="p-3 text-semibol text-black ">${producto.id_pedido}</td>
+                    <td class="p-3 text-semibol text-black ">${producto.nombreproducto} <input type="checkbox"  </td>
+                    <td id="pendiente" class="p-3 text-semibol text-black ">${producto.cantidad}</td>
+                    <td id="" class="p-3 text-semibol text-black ">${producto.estado_Pedido} <input type="checkbox" id="${producto.id_pedido}" onclick="hola()"> </td>
+                    
+                </tr>
+            </tbody>
+        </table>
+        
+            `;
+
+
+
+                        document.getElementById('productos').innerHTML = listaProducto;
+
+
+                    });
+
+                    // const putDato2 = document.getElementById('putDato');
+                    // putDato2.addEventListener('click', putProducto);
+
+
+                    // console.log(data[0].id_pedido);
+                }
+
+            } catch (error) {
+                console.log(error);
+            }
+
+
+
+            // getProductos();
+
+
+
+        }//!Fin getProductos
+
+        const hola = () => {
+            console.log('Hola')
+        }
+
+        const putProducto = async () => {
+            console.log('hola me diste click putproducto')
+
+            try {
+                //!Api de practica
+
+                await axios.put(`https://api-produccion.herokuapp.com/api/actualizar/1944`, {
+                    estado: 'listo'
+
+                }), {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+
+
+                //
+
+
+            } catch (error) {
+                console.log(error);
+            }
+
+
+        }
+
+
+    </script>
+    <!-- <script src="./limpio.js"></script> -->
+    <!-- <script src="./index.js"></script> -->
 
 </body>
 
