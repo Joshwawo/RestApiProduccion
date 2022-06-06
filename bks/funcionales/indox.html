@@ -16,8 +16,6 @@
     <button class="bg-green-300 rounded-sm px-2 py-3" onclick="putProducto()"> Put dato</button>
     <button class="bg-green-300 rounded-sm px-2 py-3" onclick="prueba()"> PRUEBA ACTUALIZAR</button>
     <button class="bg-green-300 rounded-sm px-2 py-3" onclick="postProductos()"> Post</button>
-
-
     <table class=" m-auto">
         <thead class=" bg-yellow-100 border-b-2 ">
             <tr>
@@ -45,6 +43,68 @@
         </tbody>
     </table>
 
+    <!-- Esto nomas es una prueba para probar el post -->
+
+    <!-- <form id="formulario" class="bg-orange-600 px-10 py-10">
+
+        <div>
+            <label for="cantidad" class="text-white" >Cantidad</label>
+            <input type="number" id="cantidad" class="my-2 px-1 flex">
+        </div>
+
+        <div>
+            <label for="precio" class="text-white">Precio</label>
+            <input type="number" id="precio" class="my-2 px-1 flex">
+            
+        </div>
+
+        <div>
+            <label for="estado_Pedido" class="text-white">estado Pedido</label>
+            <input type="text" id="estado_Pedido" class="my-2 px-1 flex">
+        </div>
+
+
+        <div class="py-1 pt-3">
+            <button type="submit" class="bg-blue-600 font-bold py-2 px-2 rounded-xl">Enviar</button>
+        </div>
+    </form> -->
+
+    <!-- <div class=" ">
+       
+        
+        <h1 class="font-bold py-14 text-center uppercase text-3xl text-white">Pedidos</h1>
+        <navbar class=" flex justify-center gap-11 ">
+            <a href="./index.html" class="text-white  hover:text-yellow-400">Pedidos Pendientes</a>
+            <a href="./card.html" class="text-white hover:text-yellow-400">Pedidos Pedidos entregados</a>
+        </navbar>
+        <div class="flex justify-center gap-x-96">
+            <h2 class="py-5 px-10 text-white font-semibold text-2xl">Pedidos Local</h2>
+            <h2 class="py-5 px-10 font-semibold text-2xl text-white">Pedidos En Linea</h2>
+        </div>
+        <div class="flex justify-around ">
+            <div  class="productos">
+                    
+            </div>
+
+            <div class="coass">
+
+                
+
+                <div class="productos2">
+
+                </div>
+                
+            </div>
+
+            
+        </div>
+
+        <p></p>
+
+      
+        
+
+    </div> -->
 
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -67,7 +127,7 @@
                     *NombreProducto
                     *Cantidad
                     */
-                    //
+
                     data.forEach(producto => {
                         listaProducto += `
             <table class="">
@@ -76,11 +136,8 @@
                 <tr class=" bg-lime-100">
                     <td class="p-3 text-semibol text-black ">${producto.id_pedido}</td>
                     <td class="p-3 text-semibol text-black ">${producto.nombreproducto} <input type="checkbox"  </td>
-                    <td id="pendiente" class="p-3 text-semibol text-black ">${producto.cantidad}  </td>
-                    <td id="" class="p-3 text-semibol text-black "> 
-                        <button class="bg-orange-300 rounded-sm px-2 py-2 " onclick="hola()">Proceso</button>
-                        <button class="bg-green-300 rounded-sm px-2 py-2 " onclick="hola()">Listo</button>
-
+                    <td id="pendiente" class="p-3 text-semibol text-black ">${producto.cantidad}  <button class="bg-green-300"> test</button></td>
+                    <td id="" class="p-3 text-semibol text-black ">${producto.estado_Pedido} <input name="uno" type="radio" id="${producto.id_pedido}" onclick="putProductoListo()">  <input name="uno" type="radio" id="${producto.id_pedido}" onclick="putProductoEntregado()"> <input name="uno" type="radio" id="${producto.id_pedido}" onclick="putProductoCancelado()"> <input name="uno" type="radio" id="${producto.id_pedido}" onclick="putProductoListoLimbo()"  
                         </td>
                     
                 </tr>
@@ -115,7 +172,6 @@
 
 
         const postProductos = async () => {
-            console.log('me estas haciendo post de productos')
 
             const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
             const data = respuesta.data;
@@ -142,8 +198,8 @@
             console.log('Hola')
         }
 
-        const putProductoProceso = async () => {
-            console.log('hola me diste click putProductoProceso')
+        const putProductoListo = async () => {
+            console.log('hola me diste click putproductoListo')
             const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
             const data = respuesta.data;
 
@@ -151,7 +207,7 @@
                 //!Api de practica
 
                 await axios.put(`https://api-produccion.herokuapp.com/api/actualizar/${data[data.length - 1].id_pedido}`, {
-                    estado: 'Proceso'
+                    estado: 'Listo'
 
                 }), {
                     headers: {
@@ -170,8 +226,8 @@
 
         }
 
-        const putProductoListo = async () => {
-            console.log('hola me diste click putProductoListo')
+        const putProductoEntregado = async () => {
+            console.log('hola me diste click putProductoEntregado')
             const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
             const data = respuesta.data;
             try {
@@ -179,7 +235,7 @@
                     //!Api de practica 
 
                     await axios.put(`https://api-produccion.herokuapp.com/api/actualizar/${data[data.length - 1].id_pedido}`, {
-                        estado: 'Listo'
+                        estado: 'Entregado'
 
                     }), {
                     headers: {
@@ -198,8 +254,8 @@
 
         }
 
-        const putProductoEntregado = async () => {
-            console.log('hola me diste click putProductoEntregado')
+        const putProductoCancelado = async () => {
+            console.log('hola me diste click putProductoCancelado')
             const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
             const data = respuesta.data;
             try {
@@ -235,7 +291,7 @@
                     //!Api de practica 
 
                     await axios.put(`https://api-produccion.herokuapp.com/api/actualizar/${data[data.length - 1].id_pedido}`, {
-                        estado: 'Entregado '
+                        estado: 'Limbo '
 
                     }), {
                     headers: {
@@ -264,5 +320,3 @@
 </body>
 
 </html>
-
-<!-- !bk botones  -->

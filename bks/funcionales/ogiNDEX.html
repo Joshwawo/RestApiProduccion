@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/public/output.css" rel="stylesheet">
+    <link href="/src/JS.css" rel="stylesheet">
+
+    <title>FrontEnd Produccion</title>
+</head>
+
+<body class="dark:bg-gray-900 h-screen">
+    <button class="bg-green-300 rounded-sm px-2 py-3" onclick="getProductos()">Pedidos</button>
+    <button class="bg-green-300 rounded-sm px-2 py-3" onclick="putProducto()"> Put dato</button>
+    <button class="bg-green-300 rounded-sm px-2 py-3" onclick="prueba()"> PRUEBA ACTUALIZAR</button>
+    <button class="bg-green-300 rounded-sm px-2 py-3" onclick="postProductos()"> Post</button>
+    <button class="bg-green-300 rounded-sm px-2 py-2 ">Holas</button>
+
+
+    <table class=" m-auto">
+        <thead class=" bg-yellow-100 border-b-2 ">
+            <tr>
+                <th class="p-3 text-sm font-semibold tracking-wide text-left">ID Pedido</th>
+                <th class="p-3 text-sm font-semibold tracking-wide text-left">Nombre Producto</th>
+                <th class="p-3 text-sm font-semibold tracking-wide text-left">Cantidad </th>
+                <th class="p-3 text-sm font-semibold tracking-wide text-left">Estado del pedido </th>
+
+                <!-- <input type="checkbox" name="" id=""> -->
+
+            </tr>
+        </thead>
+
+        <tbody id="productos">
+
+
+
+            <tr class="text-white">
+                <th class="p-3 text-sm font-semibold tracking-wide text-left">ID Pedido</th>
+                <th class="p-3 text-sm font-semibold tracking-wide text-left">Nombre Producto</th>
+                <th class="p-3 text-sm font-semibold tracking-wide text-left">Cantidad </th>
+                <th class="p-3 text-sm font-semibold tracking-wide text-left">Estado del pedido </th>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+
+        const getProductos = async () => {
+            console.log('me estas haciendo getProductos');
+            //sdasd
+            try {
+                //!Api de practica 
+                const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
+                const data = respuesta.data;
+
+                if (respuesta.status === 200) {
+                    let listaProducto = '';
+                    /*
+                    !Lo que voy a recibir de la API
+                    *Id_pedido
+                    *NombreProducto
+                    *Cantidad
+                    */
+
+                    data.forEach(producto => {
+                        listaProducto += `
+            <table class="">
+        </tr>
+            <tbody class="">
+                <tr class=" bg-lime-100">
+                    <td class="p-3 text-semibol text-black ">${producto.id_pedido}</td>
+                    <td class="p-3 text-semibol text-black ">${producto.nombreproducto} <input type="checkbox"  </td>
+                    <td id="pendiente" class="p-3 text-semibol text-black ">${producto.cantidad}  <button class="bg-green-300"> test</button></td>
+                    <td id="" class="p-3 text-semibol text-black "> <input name="uno" type="radio" id="${producto.id_pedido}" onclick="putProductoListo()">  <input name="uno" type="radio" id="${producto.id_pedido}" onclick="putProductoEntregado()"> <input name="uno" type="radio" id="${producto.id_pedido}" onclick="putProductoCancelado()"> <input name="uno" type="radio" id="${producto.id_pedido}" onclick="putProductoListoLimbo()"  
+                        </td>
+                    
+                </tr>
+            </tbody>
+        </table>
+        
+            `;
+
+                        document.getElementById('productos').innerHTML = listaProducto;
+
+
+                    });
+
+                    // const putDato2 = document.getElementById('putDato');
+                    // putDato2.addEventListener('click', putProducto);
+
+
+                    // console.log(data[0].id_pedido);
+                }
+
+            } catch (error) {
+                console.log(error);
+            }
+
+
+
+            // getProductos();
+
+
+
+        }//!Fin getProductos
+
+
+        const getPdito = async () => {
+            console.log('me estas haciendo post de productos')
+
+            const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
+            const data = respuesta.data;
+            console.log(data);
+
+
+            if (respuesta.status === 200) {
+
+                await data.forEach(producto => {
+                    console.log(producto.estado);
+
+
+
+                    if (respuesta.status === 200) {
+                        console.log('se ha creado el producto');
+                    }
+
+                });
+
+
+            }
+
+        }
+        getPdito();
+        const hola = () => {
+            console.log('Hola')
+        }
+
+
+
+    </script>
+    <!-- <script src="./limpio.js"></script> -->
+    <!-- <script src="./index.js"></script> -->
+
+</body>
+
+</html>
+
+
+
+<!-- <td id="" class="p-3 text-semibol text-black "> <input name="uno" type="radio" id="${producto.id_pedido}" onclick="putProductoProceso()">  <input name="uno" type="radio" id="${producto.id_pedido}" onclick="putProductoListo()"> <input name="uno" type="radio" id="${producto.id_pedido}" onclick="putProductoEntregado()"> <input name="uno" type="radio" id="${producto.id_pedido}" onclick="putProductoListoLimbo()"   -->
