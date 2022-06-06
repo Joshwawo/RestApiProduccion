@@ -111,6 +111,7 @@
     <script>
 
         const getProductos = async () => {
+            console.log('me estas haciendo getProductos');
             //sdasd
             try {
                 //!Api de practica 
@@ -135,15 +136,13 @@
                     <td class="p-3 text-semibol text-black ">${producto.id_pedido}</td>
                     <td class="p-3 text-semibol text-black ">${producto.nombreproducto} <input type="checkbox"  </td>
                     <td id="pendiente" class="p-3 text-semibol text-black ">${producto.cantidad}</td>
-                    <td id="" class="p-3 text-semibol text-black ">${producto.estado_Pedido} <input type="checkbox" id="${producto.id_pedido}" onclick="hola()"> </td>
+                    <td id="" class="p-3 text-semibol text-black ">${producto.estado_Pedido} <input type="checkbox" id="${producto.id_pedido}" onclick="putProducto()"> </td>
                     
                 </tr>
             </tbody>
         </table>
         
             `;
-
-
 
                         document.getElementById('productos').innerHTML = listaProducto;
 
@@ -180,7 +179,7 @@
                 //!Api de practica
 
                 await axios.put(`https://api-produccion.herokuapp.com/api/actualizar/1944`, {
-                    estado: 'listo'
+                    estado: 'listosaX'
 
                 }), {
                     headers: {

@@ -48,10 +48,10 @@ const getProductos = async () => {
 
             });
 
-            const putDato2 = document.getElementById('putDato');
+            // const putDato2 = document.getElementById('putDato');
             // putDato2.addEventListener('click', putProducto);
 
-            const putDato = async () => {
+            const post = async () => {
                 await axios.post('https://api-produccion.herokuapp.com/api/pedido', {
                     id_pedido: data[data.length - 1].id_pedido,
                     nombreproducto: data[data.length - 1].nombreproducto,
@@ -109,28 +109,28 @@ const prueba = () => {
 
 
 
-const putProducto = async () => {
-    console.log('hola me diste click putproducto')
+// const putProducto = async () => {
+//     console.log('hola me diste click putproducto')
 
-    try {
-        //!Api de practica
+//     try {
+//         //!Api de practica
 
-        await axios.put(`https://api-produccion.herokuapp.com/api/actualizar/1944`, {
-            estado: 'dadada'
+//         await axios.put(`https://api-produccion.herokuapp.com/api/actualizar/1944`, {
+//             estado: 'dadada'
 
-        }), {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        }
-
-
-        //
+//         }), {
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             }
+//         }
 
 
-    } catch (error) {
-        console.log(error);
-    }
+//         //
 
 
-}
+//     } catch (error) {
+//         console.log(error);
+//     }
+
+
+// }
