@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', (evento) => {
 });
 
 const getProductos = async () => {
-    //sdasd
+    //sdasdasas
     try {
         //!Api de practica 
         const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
@@ -34,22 +34,52 @@ const getProductos = async () => {
             *NombreProducto
             *Cantidad
             */
+            const productosid =[data.length];
+            const contador = 0;
 
             data.forEach(producto => {
+
 
 
                 // if (data.estado_Pedido == 'Pendiente') {
                 //     console.log('pendiente');
                 // }
+
+                
+                const id = producto.id_pedido
+                productosid[contador] = id;
+                for(var i =0; i<productosid.length; i++){
+                    if(id == productosid[i]){
+                        break;
+                    }else{
+                        
+                    }
+                }
+                console.log(id);
+                if (data.estado_Pedido == 'Pendiente') {
+                    console.log('pendiente');
+                }
+
+                
+
+
                 listaProducto += `
             <table class="">
         </tr>
             <tbody class="">
                 <tr class=" bg-lime-100">
+<<<<<<< HEAD
                     <td class="p-3 text-semibol text-black ">${producto.id_pedido}</td>
                     <td class="p-3 text-semibol text-black ">${producto.nombreproducto} <input type="checkbox"  </td>
                     <td id="pendiente" class="p-3 text-semibol text-black ">${producto.cantidad}</td>
                     <td id="" class="p-3 text-semibol text-black ">${producto.estado_Pedido} <input type="checkbox" id="${producto.id_pedido}"   onclick="putProducto()"> </td>
+=======
+                <td class="p-3 text-semibol text-black ">${producto.id_pedido}</td>
+                <td class="p-3 text-semibol text-black ">${producto.nombreproducto} <input type="checkbox" name="" id="coso+${producto.id_pedido}"> <input type="checkbox" name="" id="${producto.id_pedido}"> <input type="checkbox" name="" id="${producto.id_pedido}"> <input type="checkbox" name="" id="${producto.id_pedido}">  </td>
+                <td id="pendiente" class="p-3 text-semibol text-black ">${producto.cantidad}</td>
+                ` 
+                console.log(producto.id_pedido);`
+>>>>>>> f56fac1720d65835dc2be6c9f8dfde262262f390
                     
                 </tr>
             </tbody>
@@ -151,6 +181,7 @@ const prueba = () => {
 }
 
 
+
 const putProducto = async () => {
     console.log('hola me diste click putproducto')
 
@@ -179,7 +210,22 @@ const putProducto = async () => {
 
 
 
+
+const pruebaValidaciones = async () => {
+    try {
+        const respuesta = await axios.get('http://localhost:3001/Pruebas');
+        const data = respuesta.data;
+
+        console.log(data);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 getProductos();
+
+pruebaValidaciones();
 
 
 
