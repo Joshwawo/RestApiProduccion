@@ -15,6 +15,7 @@
     <button class="bg-green-300 rounded-sm px-2 py-3" onclick="getProductos()">Pedidos</button>
     <button class="bg-green-300 rounded-sm px-2 py-3" onclick="putProducto()"> Put dato</button>
     <button class="bg-green-300 rounded-sm px-2 py-3" onclick="prueba()"> PRUEBA ACTUALIZAR</button>
+    <button class="bg-green-300 rounded-sm px-2 py-3" onclick="postProductos()"> Post</button>
     <table class=" m-auto">
         <thead class=" bg-yellow-100 border-b-2 ">
             <tr>
@@ -135,8 +136,11 @@
                 <tr class=" bg-lime-100">
                     <td class="p-3 text-semibol text-black ">${producto.id_pedido}</td>
                     <td class="p-3 text-semibol text-black ">${producto.nombreproducto} <input type="checkbox"  </td>
-                    <td id="pendiente" class="p-3 text-semibol text-black ">${producto.cantidad}</td>
-                    <td id="" class="p-3 text-semibol text-black ">${producto.estado_Pedido} <input type="checkbox" id="${producto.id_pedido}" onclick="putProducto()"> </td>
+                    <td id="pendiente" class="p-3 text-semibol text-black ">${producto.cantidad}  <button class="bg-green-300"> test</button></td>
+                    <td id="" class="p-3 text-semibol text-black ">${producto.estado_Pedido} <input name="uno" type="radio" id="${producto.id_pedido}" onclick="putProductoListo()">  <input name="uno" type="radio" id="${producto.id_pedido}" onclick="putProductoEntregado()"> <input name="uno" type="radio" id="${producto.id_pedido}" onclick="putProductoCancelado()"> <input name="uno" type="radio" id="${producto.id_pedido}" onclick="putProductoListoLimbo()"  
+                     
+                       
+                        </td>
                     
                 </tr>
             </tbody>
@@ -168,18 +172,44 @@
 
         }//!Fin getProductos
 
+
+        const postProductos = async () => {
+
+            const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
+            const data = respuesta.data;
+            await axios.post('https://api-produccion.herokuapp.com/api/pedido', {
+                id_pedido: data[data.length - 1].id_pedido,
+                nombreproducto: data[data.length - 1].nombreproducto,
+                cantidad: data[data.length - 1].cantidad,
+                estado: 'Pendiente'
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+
+                }
+
+            })
+                .then(response => {
+                    console.log(response);
+                    // alert('Pedido agregado');
+                    // getProductos();
+                })
+        }
+
         const hola = () => {
             console.log('Hola')
         }
 
-        const putProducto = async () => {
-            console.log('hola me diste click putproducto')
+        const putProductoListo = async () => {
+            console.log('hola me diste click putproductoListo')
+            const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
+            const data = respuesta.data;
 
             try {
                 //!Api de practica
 
-                await axios.put(`https://api-produccion.herokuapp.com/api/actualizar/1944`, {
-                    estado: 'listosaX'
+                await axios.put(`https://api-produccion.herokuapp.com/api/actualizar/${data[data.length - 1].id_pedido}`, {
+                    estado: 'Listo'
 
                 }), {
                     headers: {
@@ -197,6 +227,92 @@
 
 
         }
+
+        const putProductoEntregado = async () => {
+            console.log('hola me diste click putProductoEntregado')
+            const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
+            const data = respuesta.data;
+            try {
+                id_pedido: data[data.length - 1].id_pedido,
+                    //!Api de practica 
+
+                    await axios.put(`https://api-produccion.herokuapp.com/api/actualizar/${data[data.length - 1].id_pedido}`, {
+                        estado: 'Entregado'
+
+                    }), {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+
+
+                //
+
+
+            } catch (error) {
+                console.log(error);
+            }
+
+
+        }
+
+        const putProductoCancelado = async () => {
+            console.log('hola me diste click putProductoCancelado')
+            const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
+            const data = respuesta.data;
+            try {
+                id_pedido: data[data.length - 1].id_pedido,
+                    //!Api de practica 
+
+                    await axios.put(`https://api-produccion.herokuapp.com/api/actualizar/${data[data.length - 1].id_pedido}`, {
+                        estado: 'Cancelado'
+
+                    }), {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+
+
+                //
+
+
+            } catch (error) {
+                console.log(error);
+            }
+
+
+        }
+
+        const putProductoListoLimbo = async () => {
+            console.log('hola me diste click putProductoListoLimbo')
+            const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
+            const data = respuesta.data;
+            try {
+                id_pedido: data[data.length - 1].id_pedido,
+                    //!Api de practica 
+
+                    await axios.put(`https://api-produccion.herokuapp.com/api/actualizar/${data[data.length - 1].id_pedido}`, {
+                        estado: 'Limbo '
+
+                    }), {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+
+
+                //
+
+
+            } catch (error) {
+                console.log(error);
+            }
+
+
+        }
+
+
 
 
     </script>
