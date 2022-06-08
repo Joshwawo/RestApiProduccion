@@ -35,6 +35,8 @@
             <button onclick="postProductosOnline()" class="bg-green-700"> POST</button>
             <button onclick="getProductosOnline()" class="bg-orange-500">GET</button>
             <button onclick="putProductoProcesoOnline()" class="bg-red-500">PUT</button>
+            <!-- <button onclick="putProductoProcesoOnline()" class="bg-red-500">PUT</button> -->
+            
             
 
 
@@ -429,20 +431,22 @@
         }
 
         const putProductoProcesoOnline = async () => {
+
             console.log('Me diste Click desde el putProductoProcesoOnline')
-            console.log('hola me diste click putProductoProceso')
             const respuesta = await axios.get('https://cafe-deer-online.herokuapp.com/api/orders/produccion');
             const data = respuesta.data;
 
+            
+            // data[data.length - 1]._id
 
-            await axios.put('https://api-produccion.herokuapp.com/api/online', {
+            await axios.put(`https://api-produccion.herokuapp.com/api/actualizaronline/${data[data.length - 1]._id}`, {
                 
                 estado: 'Pendiente'
             }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
-                    "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+                    "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS,PUT",
                     "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
 
 
