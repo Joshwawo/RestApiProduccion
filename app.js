@@ -173,6 +173,22 @@ app.put('/api/actualizar/:id', (req, res) => {
     }
 })
 
+app.put('/api/actualizaronline/:id', (req, res) => {
+    const { id } = req.params;
+    const { estado } = req.body;
+    const sql = `UPDATE pedidoonline SET estado ='${estado}' WHERE id=${id}`;
+
+    conn.query(sql, error => {
+        if (error) throw error;
+        res.send(req.body);
+
+    });
+
+    if (!id) {
+        res.send('no existe el pedido con ese id')
+    }
+})
+
 app.delete('/api/delete/:id', (req, res) => {
     const { id } = req.params;
 

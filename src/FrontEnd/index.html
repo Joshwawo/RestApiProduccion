@@ -34,22 +34,26 @@
             <h1 class="bg-red-200">Hello World</h1>
             <button onclick="postProductosOnline()" class="bg-green-700"> POST</button>
             <button onclick="getProductosOnline()" class="bg-orange-500">GET</button>
+            <button onclick="putProductoProcesoOnline()" class="bg-red-500">PUT</button>
+            
 
 
-            <table class="bg-green-300 ">
+            <table class="bg-green-300 mauto">
                 <thead>
                     <tr>
                         <th>id</th>
                         <th>nombreProducto</th>
-                        <th>cveCliente</th>
+                        <th>Id Cliente</th>
                         <th>NombreCliente</th>
                         <th>Telefono</th>
                         <th>Direccion</th>
                     </tr>
 
+
                 </thead>
 
                 <tbody id="productosOnline" class="">
+
 
 
 
@@ -366,7 +370,8 @@
                     <tbody class="">
                     <tr class="text-black text-xs">
                     <th class="bg-blue-300">${baseObj.id}</th>
-                    <th class="bg-red-200 max-w-xl py-1 ">**${baseObj.nombreProducto} (${baseObj.cantidad})**</th>
+                    <th class="bg-red-200 max-w-xl py-1 ">**${baseObj.nombreProducto} (${baseObj.cantidad})** <button class="bg-yellow-300">Proceso </button>
+                    <button class="bg-green-300">Listo </button>  </th>
                     <th class="bg-green-200" >${baseObj.idUsuario}</th>
                     <th class="bg-amber-200">${baseObj.nombreCliente}</th>
                     <th >N/A</th>
@@ -395,7 +400,7 @@
 
             const respuesta = await axios.get('https://cafe-deer-online.herokuapp.com/api/orders/produccion');
             const data = respuesta.data;
-            
+
 
             await axios.post('https://api-produccion.herokuapp.com/api/online', {
                 id: data[data.length - 1]._id,
@@ -403,7 +408,7 @@
                 cantidad: data[data.length - 1].orderItems[0].quantity,
                 nombreCliente: data[data.length - 1].shippingAddress.fullName,
                 idUsuario: data[data.length - 1].user,
-                direccion: data[data.length - 1].shippingAddress.address,        
+                direccion: data[data.length - 1].shippingAddress.address,
                 estado: 'Pendiente'
             }, {
                 headers: {
@@ -423,6 +428,35 @@
                 })
         }
 
+        const putProductoProcesoOnline = async () => {
+            console.log('Me diste Click desde el putProductoProcesoOnline')
+            console.log('hola me diste click putProductoProceso')
+            const respuesta = await axios.get('https://cafe-deer-online.herokuapp.com/api/orders/produccion');
+            const data = respuesta.data;
+
+
+            await axios.put('https://api-produccion.herokuapp.com/api/online', {
+                
+                estado: 'Pendiente'
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+                    "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+
+
+                }
+
+            })
+                .then(response => {
+                    console.log(response);
+                    // alert('Pedido agregado');
+                    // getProductos();
+                })
+
+
+        }
 
 
 
