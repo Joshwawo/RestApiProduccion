@@ -115,6 +115,7 @@ app.post('/api/online', (req, res) => {
         cantidad: req.body.cantidad,
         nombreCliente: req.body.nombreCliente,
         idUsuario: req.body.idUsuario,
+        idPedido: req.body.idPedido,
         direccion: req.body.direccion,
 
 

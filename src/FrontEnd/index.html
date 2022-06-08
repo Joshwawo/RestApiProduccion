@@ -47,6 +47,7 @@
                         <th>nombreProducto</th>
                         <th>Id Cliente</th>
                         <th>NombreCliente</th>
+                        <th>Id Producto</th>
                         <th>Telefono</th>
                         <th>Direccion</th>
                     </tr>
@@ -381,7 +382,6 @@
                     <th class="bg-green-200" >${baseObj.idUsuario}</th>
                     <th class="bg-amber-200">${baseObj.nombreCliente}</th>
                     <th class="bg-orange-300">${baseObj.idPedido}</th>
-
                     <th >N/A</th>
                     <th class="bg-orange-300">${baseObj.direccion}</th>
                     </tr>
@@ -416,6 +416,7 @@
                 cantidad: data[data.length - 1].orderItems[0].quantity,
                 nombreCliente: data[data.length - 1].shippingAddress.fullName,
                 idUsuario: data[data.length - 1].user,
+                idPedido: data[data.length - 1].orderItems[0]._id,
                 direccion: data[data.length - 1].shippingAddress.address,
                 estado: 'Pendiente'
             }, {
