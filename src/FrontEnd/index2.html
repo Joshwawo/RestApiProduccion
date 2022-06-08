@@ -13,6 +13,8 @@
 <body class=" bg-teal-400">
 
     <h1 class="bg-red-200">Hello World</h1>
+    <button onclick="postProductos()" class="bg-green-700"> POST</button>
+    <button onclick="getProductos()" class="bg-orange-500">GET</button>
 
 
     <div id="" class="m-auto bg-orange-600">
@@ -44,7 +46,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        const hola = async () => {
+        const getProductos = async () => {
 
             // const respuesta = await fetch('https://cafe-deer-online.herokuapp.com/api/orders')
             // const data = await respuesta.json()
@@ -52,6 +54,7 @@
             //! const {id, name, price, quantity, total} = producto;
 
             // try {
+                console.log('hola me hiciste get')
             const respuesta = await axios.get('https://cafe-deer-online.herokuapp.com/api/orders/produccion');
             const data = respuesta.data;
             // console.log(data)
@@ -103,10 +106,10 @@
             }
 
 
+        }
 
-
-
-            const postProductos = async () => {
+        const postProductos = async () => {
+            
                 console.log('me estas haciendo post de productos')
 
                 const respuesta = await axios.get('https://cafe-deer-online.herokuapp.com/api/orders/produccion');
@@ -134,18 +137,7 @@
                     })
             }
 
-            postProductos();
-
-
-
-            // console.log(data_table)
-
-
-
-
-        }
-
-        hola();
+        // hola();
     </script>
     <!-- <script src="./app.js"></script> -->
     <!-- <script src="./app.js"></script> -->
