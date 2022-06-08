@@ -189,6 +189,7 @@ app.put('/api/actualizaronline/:id', (req, res) => {
     }
 })
 
+
 app.delete('/api/delete/:id', (req, res) => {
     const { id } = req.params;
 
