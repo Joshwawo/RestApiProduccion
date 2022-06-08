@@ -75,7 +75,7 @@ app.get('/api/pedido', (req, res) => {
 
 app.get('/api/pedidoonline', (req, res) => {
 
-    const sql = 'SELECT id_pedido, id_producto, estado FROM pedidoonline';
+    const sql = 'SELECT estado, id,  FROM pedidoonline';
     conn.query(sql, (error, resultados) => {
         if (error) throw error;
         if (resultados.length > 0) {
@@ -86,7 +86,7 @@ app.get('/api/pedidoonline', (req, res) => {
     });
 });
 
-
+//asd
 app.post('/api/pedido', (req, res) => {
     const sql = 'INSERT INTO pedido SET ?';
     const pedidoObjP = {
