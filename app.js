@@ -73,7 +73,7 @@ app.get('/api/pedido', (req, res) => {
 });
 
 app.get('/api/pedidoonline', (req, res) => {
-    // res.send('hola desde producto')
+    // res.send('hola desde producto')asdas
 
     const sql = 'SELECT * FROM pedidoonline';
     conn.query(sql, (error, resultados) => {
