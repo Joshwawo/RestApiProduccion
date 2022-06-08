@@ -112,7 +112,7 @@
                 const respuesta = await axios.get('https://cafe-deer-online.herokuapp.com/api/orders/produccion');
                 const data = respuesta.data;
 
-                await axios.post('https://api-produccion.herokuapp.com/api/pedidonline', {
+                await axios.post('https://api-produccion.herokuapp.com/api/pedidoonline', {
                     id: data[data.length - 1]._id,
                     nombreProducto: data[data.length - 1].orderItems[0].name,
                     cantidad: data[data.length - 1].orderItems[0].quantity,
