@@ -392,8 +392,11 @@
 
             console.log('me estas haciendo post de productos')
 
+
             // const respuesta = await axios.get('https://cafe-deer-online.herokuapp.com/api/orders/produccion');
             // const data = respuesta.data;
+            const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
+            const data = respuesta.data;
 
             await axios.post('https://api-produccion.herokuapp.com/api/pedido', {
                 // id: data[data.length - 1]._id,
@@ -402,15 +405,17 @@
                 // nombreCliente: data[data.length - 1].shippingAddress.fullName,
                 // idUsuario: data[data.length - 1].user,
                 // direccion: data[data.length - 1].shippingAddress.address,
-                id: 'tacos',
-                estado: 'Pendiente',
+                id_pedido: data[data.length - 1].id_pedido,
+                nombreproducto: data[data.length - 1].nombreproducto,
+                cantidad: data[data.length - 1].cantidad,
+                estado: 'Pendiente'
             }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
                     "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
                     "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
-                    
+
 
                 }
 
