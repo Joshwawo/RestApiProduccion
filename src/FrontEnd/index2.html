@@ -92,39 +92,49 @@
                 </tbody>
 
                     `;
-                document.getElementById('productos').innerHTML = listaProducto;
+                    document.getElementById('productos').innerHTML = listaProducto;
 
-                    
+
 
                 })
-                
+
                 // console.log(data_table)
 
             }
 
+
+
+
+
             const postProductos = async () => {
-            console.log('me estas haciendo post de productos')
+                console.log('me estas haciendo post de productos')
 
-            const respuesta = await axios.get('https://cafe-deer-online.herokuapp.com/api/orders/produccion');
-            const data = respuesta.data;
-            await axios.post('https://api-produccion.herokuapp.com/api/pedido', {
-                id_pedido: data[data.length - 1].id_pedido,
-                nombreproducto: data[data.length - 1].nombreproducto,
-                cantidad: data[data.length - 1].cantidad,
-                estado: 'Pendiente'
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
+                const respuesta = await axios.get('https://cafe-deer-online.herokuapp.com/api/orders/produccion');
+                const data = respuesta.data;
 
-                }
+                await axios.post('https://api-produccion.herokuapp.com/api/pedido', {
+                    id: data[data.length - 1]._id,
+                    nombreProducto: data[data.length - 1].orderItems[0].name,
+                    cantidad: data[data.length - 1].orderItems[0].quantity,
+                    nombreCliente: data[data.length - 1].shippingAddress.fullName,
+                    idUsuario: data[data.length - 1].user,
+                    direccion: data[data.length - 1].shippingAddress.address,
+                    estado: 'Pendiente',
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json'
 
-            })
-                .then(response => {
-                    console.log(response);
-                    // alert('Pedido agregado');
-                    // getProductos();
+                    }
+
                 })
-        }
+                    .then(response => {
+                        console.log(response);
+                        // alert('Pedido agregado');
+                        // getProductos();
+                    })
+            }
+
+            postProductos();
 
 
 

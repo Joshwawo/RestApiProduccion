@@ -13,6 +13,31 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script src="./oso.js"></script>
+
+
+    <script>
+
+        let data_table = []
+        for (const item of data) {
+            let baseObj = {
+                id: item._id,
+                nombreProducto: '',
+                cantidad: 0,
+                nombreCliente: item.shippingAddress.fullname,
+                idUsuario: producto.user,
+                direccion: item.shippingAddress.adrress
+            }
+
+            item.OrderItems.forEach(i => {
+                baseObj.nombreProducto = i.name
+                baseObj.cantidad = i.quantity
+                data_table.push(baseObj)
+            })
+        }
+
+        console.log(data_table)
+
+    </script>
 </body>
 
 </html>
