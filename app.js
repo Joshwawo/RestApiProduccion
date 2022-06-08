@@ -100,7 +100,7 @@ app.get('/api/onlinetodo', (req, res) => {
         }
     });
 });
-
+//
 // app.post('/api/online', (req, res) => {
 //     const sql = 'INSERT INTO pedidoonline SET ?';
 //     const baseObj = {
