@@ -111,6 +111,12 @@ app.post('/api/online', (req, res) => {
     const baseObj = {
         id: req.body.id,
         estado: req.body.estado,
+        nombreProducto: req.body.nombreProducto,
+        cantidad: req.body.cantidad,
+        nombreCliente: req.body.nombreCliente,
+        idUsuario: req.body.idUsuario,
+        direccion: req.body.direccion,
+        
 
     }
 
