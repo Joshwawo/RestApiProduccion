@@ -438,18 +438,16 @@
 
 
             // data[data.length - 1]._id
+            //`https://api-produccion.herokuapp.com/api/actualizaronline/${data[data.length - 1]._id}`
 
-            await axios.put(`https://api-produccion.herokuapp.com/api/actualizaronline/${data[data.length - 1]._id}`, {
+            await axios.put(`https://api-produccion.herokuapp.com/api/actualizaronline/1`, {
 
-                estado: 'Pendiente'
+                estado: 'Listo'
             }, {
                 headers: {
 
-
-
                     'Content-Type': 'application/json',
-                    'Content-Type': 'text/html; charset=utf-8',
-                    'Content-Type': ' multipart/form-data; boundary=something',
+
 
                     'Access-Control-Allow-Origin': '*',
                     "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS, PUT",
