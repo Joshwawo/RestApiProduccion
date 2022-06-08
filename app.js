@@ -87,6 +87,20 @@ app.get('/api/online', (req, res) => {
     });
 });
 
+app.get('/api/onlinetodo', (req, res) => {
+    // res.send('hola desde producto')
+
+    const sql = 'SELECT * FROM pedidoonline';
+    conn.query(sql, (error, resultados) => {
+        if (error) throw error;
+        if (resultados.length > 0) {
+            res.json(resultados)
+        } else {
+            res.send('Sin resultados en pedidos')
+        }
+    });
+});
+
 // app.post('/api/online', (req, res) => {
 //     const sql = 'INSERT INTO pedidoonline SET ?';
 //     const baseObj = {

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/public/output.css" rel="stylesheet">
+    <link href="/src/JS.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body class="dark:bg-gray-900 h-screen img">
+    
+        <ul class="flex justify-center">
+            <li class="mr-3">
+                <a class="inline-block py-2 px-4 hover:bg-yellow-600 text-white" href="../FrontEnd/index.html">Pedidos</a>
+            </li>
+            <li class="mr-3">
+                <a class="inline-block   hover:border-gray-200 text-white hover:bg-yellow-600 py-2 px-4"
+                    href="./PedidoOnline.html">Pedidos en proceso </a>
+            </li>
+        
+        </ul>
+
+        <div class="contenedor">
+            
+
+        </div>
+    
+    <!-- <p></p> -->
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+
+        const hola = async () => {
+
+
+            try {
+                const respuesta = await axios.get('https://api-produccion.herokuapp.com/api/online');
+                const data = respuesta.data;
+                console.log(data)
+
+                data.forEach(dato => {
+
+                    if (dato.estado == "Listo") {
+                        console.log(dato.estado)
+
+                    }
+
+                    if (dato.estado == "entregado") {
+                        console.log(dato.estado)
+                    }
+
+
+                });
+
+
+
+
+            } catch (error) {
+                console.log(error)
+
+            }
+
+
+        }
+
+        hola();
+
+
+    </script>
+</body>
+
+</html>

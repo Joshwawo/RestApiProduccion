@@ -12,30 +12,52 @@
     <h1>hOLA MUNDO </h1>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <script src="./oso.js"></script>
+    <!-- <script src="./oso.js"></script> -->
+
+    
 
 
     <script>
 
-        let data_table = []
-        for (const item of data) {
-            let baseObj = {
-                id: item._id,
-                nombreProducto: '',
-                cantidad: 0,
-                nombreCliente: item.shippingAddress.fullname,
-                idUsuario: producto.user,
-                direccion: item.shippingAddress.adrress
+        const hola = async () => {
+
+
+            try {
+                const respuesta = await axios.get('https://api-produccion.herokuapp.com/api/online');
+                const data = respuesta.data;
+                console.log(data)
+
+                data.forEach(dato => {
+                    // console.log(dato.id)
+                    // console.log(dato.estado)
+                    // console.log(dato.idProducto)
+
+                    if (dato.estado == "Listo"){
+                        
+
+
+                    }
+
+                    if(dato.estado == "entregado"){
+                        console.log(dato.estado)
+                    }
+                        
+
+                });
+
+
+
+
+            } catch (error) {
+                console.log(error)
+
             }
 
-            item.OrderItems.forEach(i => {
-                baseObj.nombreProducto = i.name
-                baseObj.cantidad = i.quantity
-                data_table.push(baseObj)
-            })
+
         }
 
-        console.log(data_table)
+        hola();
+
 
     </script>
 </body>
