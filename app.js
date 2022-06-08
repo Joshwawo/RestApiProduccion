@@ -87,24 +87,40 @@ app.get('/api/online', (req, res) => {
     });
 });
 
+// app.post('/api/online', (req, res) => {
+//     const sql = 'INSERT INTO pedidoonline SET ?';
+//     const baseObj = {
+//         id: req.body.id,
+//         nombreProducto: req.body.nombreProducto,
+//         cantidad: req.body.cantidad,
+//         nombreCliente: req.body.nombreCliente,
+//         idUsuario: req.body.idUsuario,
+//         estado: req.body.estado,
+//         direccion: req.body.direccion,
+//     }
+
+//     conn.query(sql, baseObj, error => {
+//         if (error) throw error;
+//         res.send('Pedido Creado');
+
+//     });
+// });
+
 app.post('/api/online', (req, res) => {
     const sql = 'INSERT INTO pedidoonline SET ?';
-    const pedidoObjP = {
+    const baseObj = {
         id: req.body.id,
-        nombreProducto: req.body.nombreProducto,
-        cantidad: req.body.cantidad,
-        nombreCliente: req.body.nombreCliente,
-        idUsuario: req.body.idUsuario,
         estado: req.body.estado,
-        direccion: req.body.direccion,
+
     }
 
-    conn.query(sql, pedidoObjP, error => {
+    conn.query(sql, baseObj, error => {
         if (error) throw error;
         res.send('Pedido Creado');
 
     });
 });
+
 
 //asd
 app.post('/api/pedido', (req, res) => {
