@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/public/output.css" rel="stylesheet">
+    <link href="/src/JS.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body class=" bg-teal-400">
+
+    <h1 class="bg-red-200">Hello World</h1>
+
+
+    <div id="" class="m-auto bg-orange-600">
+
+
+        <table class="bg-green-300 ">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>nombreProducto</th>
+                    <th>cveCliente</th>
+                    <th>NombreCliente</th>
+                    <th>Telefono</th>
+                    <th>Direccion</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="productos" class="">
+
+
+
+            </tbody>
+
+
+        </table>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const hola = async () => {
+
+            // const respuesta = await fetch('https://cafe-deer-online.herokuapp.com/api/orders')
+            // const data = await respuesta.json()
+            // console.log(data)
+            //! const {id, name, price, quantity, total} = producto;
+
+            // try {
+            const respuesta = await axios.get('https://cafe-deer-online.herokuapp.com/api/orders/produccion');
+            const data = respuesta.data;
+            console.log(data)
+
+            // console.log(data)
+
+            console.log('Funciono')
+            // console.log(data[0].orderItems[0].name)
+
+
+
+            let listaProducto = '';
+
+            data.forEach(producto => {
+
+                console.log(producto)
+                producto.orderItems.forEach(datosPedido => {
+
+                    console.log(datosPedido.name)
+
+                })
+
+
+
+
+
+                let predidosObj = {
+                    id: producto._id,
+                    nombreProducto: producto.orderItems[0].name,
+                    cantidad: producto.orderItems[length].quantity,
+                    nombreCliente: producto.shippingAddress.fullName,
+                    idUsurio: producto.user,
+                    direccion: producto.shippingAddress.address,
+                }
+
+                console.log(predidosObj.nombreProducto)
+
+
+
+                // console.log(predidosObj.nombreProducto)
+
+
+
+                // console.log(predidosObj.id)
+                // console.log(predidosObj.name)
+
+
+                listaProducto += `
+                <tbody class="">
+                <tr class="text-black text-xs">
+                <th class="bg-blue-300">${predidosObj.id}</th>
+                <th class="bg-red-200 max-w-xl ">**${predidosObj.nombreProducto} (${predidosObj.cantidad})**</th>
+                <th class="bg-green-200" >${predidosObj.idUsurio}</th>
+                <th class="bg-amber-200">${predidosObj.nombreCliente}</th>
+                <th >N/A</th>
+                <th class="bg-orange-300">${predidosObj.direccion}</th>
+                </tr>
+                </tbody>
+
+                    `;
+                document.getElementById('productos').innerHTML = listaProducto;
+
+
+            });
+
+
+
+
+        }
+
+        hola();
+    </script>
+    <!-- <script src="./app.js"></script> -->
+    <!-- <script src="./app.js"></script> -->
+
+</body>
+
+</html>

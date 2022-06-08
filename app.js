@@ -104,6 +104,20 @@ app.post('/api/pedido', (req, res) => {
     });
 });
 
+app.post('/api/pedidonline', (req, res) => {
+    const sql = 'INSERT INTO pedidoonline SET ?';
+    const pedidoObjP = {
+        estado: req.body.estado,
+        id_producto: req.body.id_producto
+    }
+
+    conn.query(sql, pedidoObjP, error => {
+        if (error) throw error;
+        res.send('Pedido Creado');
+
+    });
+});
+
 
 app.put('/api/actualizar/:id', (req, res) => {
     const { id } = req.params;

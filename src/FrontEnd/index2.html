@@ -56,75 +56,79 @@
             const data = respuesta.data;
             // console.log(data)
 
+            // console.log(data)
+
             console.log('Funciono')
-            // console.log(data[0].orderItems[0].name)
-
-
-
+            // console.log(data[0].orderItems[0].name
             let listaProducto = '';
 
-            data.forEach(producto => {
-
-                // console.log(producto)
-                producto.orderItems.forEach(datosPedido => {
-
-                    console.log(datosPedido.name)
-
-                })
-
-
-
-
-
-
-                let predidosObj = {
-                    id: producto._id,
-                    // nombreProducto: producto.orderItems[producto.orderItems.length-1].name,
-                    nombreProducto: producto.orderItems[1].name,
-                    // nombreProducto: producto.orderItems.forEach(datosPedido => {
-                    //     datosPedido.nam
-                    // }),
-                    // // nombreProducto: date.name,
-                    cantidad: producto.orderItems[length].quantity,
-                    // cantidad: producto.orderItems.forEach(datosPedido => {
-                    //     datosPedido.quantity
-                    // }),
-
-                    nombreCliente: producto.shippingAddress.fullName,
-                    idUsurio: producto.user,
-                    direccion: producto.shippingAddress.address,
+            // listaProducto
+            let data_table = []
+            for (const item of data) {
+                let baseObj = {
+                    id: item._id,
+                    nombreProducto: '',
+                    cantidad: 0,
+                    nombreCliente: item.shippingAddress.fullName,
+                    idUsuario: item.user,
+                    direccion: item.shippingAddress.address
                 }
 
+                item.orderItems.forEach(i => {
+                    baseObj.nombreProducto = i.name
+                    baseObj.cantidad = i.quantity
+                    data_table.push(baseObj)
 
-
-                // console.log(predidosObj.nombreProducto)
-
-
-
-                // console.log(predidosObj.id)
-                // console.log(predidosObj.name)
-
-
-                listaProducto += `
-    <tbody class="">
-    <tr class="text-black text-xs">
-                <th class="bg-blue-300">${predidosObj.id}</th>
-                <th class="bg-red-200 max-w-xl ">**${predidosObj.nombreProducto} (${predidosObj.cantidad})**</th>
-                <th class="bg-green-200" >${predidosObj.idUsurio}</th>
-                <th class="bg-amber-200">${predidosObj.nombreCliente}</th>
+                    listaProducto += `
+                <tbody class="">
+                <tr class="text-black text-xs">
+                <th class="bg-blue-300">${baseObj.id}</th>
+                <th class="bg-red-200 max-w-xl py-1 ">**${baseObj.nombreProducto} (${baseObj.cantidad})**</th>
+                <th class="bg-green-200" >${baseObj.idUsuario}</th>
+                <th class="bg-amber-200">${baseObj.nombreCliente}</th>
                 <th >N/A</th>
-                <th class="bg-orange-300">${predidosObj.direccion}</th>
-            </tr>
-            </tbody>
+                <th class="bg-orange-300">${baseObj.direccion}</th>
+                </tr>
+                </tbody>
 
-`;
-
-
-
+                    `;
                 document.getElementById('productos').innerHTML = listaProducto;
 
+                    
 
-            });
+                })
+                
+
+
+            }
+
+            const postProductos = async () => {
+            console.log('me estas haciendo post de productos')
+
+            const respuesta = await axios.get('https://cafe-deer-online.herokuapp.com/api/orders/produccion');
+            const data = respuesta.data;
+            await axios.post('https://api-produccion.herokuapp.com/api/pedido', {
+                id_pedido: data[data.length - 1].id_pedido,
+                nombreproducto: data[data.length - 1].nombreproducto,
+                cantidad: data[data.length - 1].cantidad,
+                estado: 'Pendiente'
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+
+                }
+
+            })
+                .then(response => {
+                    console.log(response);
+                    // alert('Pedido agregado');
+                    // getProductos();
+                })
+        }
+
+
+
+            console.log(data_table)
 
 
 

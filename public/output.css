@@ -738,6 +738,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 0.375rem;
 }
 
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
 .pt-2 {
   padding-top: 0.5rem;
 }
