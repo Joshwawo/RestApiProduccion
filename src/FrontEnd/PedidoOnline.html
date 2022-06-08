@@ -23,11 +23,12 @@
 
     </ul>
 
-    <div class="flex justify-center">
-        <button class="bg-red-400 " onclick="getPedidosProceso()">Pedidos </button>
+    <div class="flex justify-center pt-14">
+        <button class="bg-yellow-400 rounded-sm px-1 py-1 " onclick="getPedidosProceso()">Pedidos </button>
+        <button class="bg-yellow-600 rounded-sm px-1 py-1 " onclick="putProductoProcesoOnlineEntregado()">PUT </button>
     </div>
 
-    <div class="contenedor p-20 Listo">
+    <div class="contenedor  Listo">
 
         <table class="bg-orange-300  m-auto ">
 
@@ -101,9 +102,7 @@
                 data.forEach(dato => {
 
                     if (dato.estado == "Listo") {
-                        console.log(dato.estado)
-                        console.log(dato.nombreCliente)
-                        console.log(dato.direccion)
+                     
 
                         listaProducto += `
                         <tbody class="max-w-xl">
@@ -123,17 +122,13 @@
                     }
 
                     if (dato.estado == "entregado") {
-                        console.log(dato.estado)
-                        console.log(dato.nombreCliente)
-                        console.log(dato.direccion)
+                        
                         listaProducto += `
                         <tbody class="max-w-xl">
                         <tr class="text-black text-xs">
                         <th class="bg-blue-300 max-w-xl">${dato.id}</th>
                         <th class="bg-red-200  py-1 ">${dato.nombreCliente}</th>
-                        
-                        <th class="bg-orange-300">${dato.direccion}</th>
-                        <th >N/A</th>
+                        <th class="bg-orange-300">${dato.direccion} </th>
                         </tr>
                         </tbody>
 
@@ -157,13 +152,14 @@
 
         const putProductoProcesoOnlineEntregado = async () => {
 
-            console.log('Me diste Click desde el putProductoProcesoOnline')
-            const respuesta = await axios.get('https://cafe-deer-online.herokuapp.com/api/orders/produccion');
+            console.log('Me diste Click desde el putProductoProcesoOnlineEntregado')
+            const respuesta = await axios.get('https://api-produccion.herokuapp.com/api/onlinetodo');
             const data = respuesta.data;
 
             //asas
             // data[data.length - 1]._id
             // `https://api-produccion.herokuapp.com/api/actualizaronline/${data[data.length - 1]._id}`
+            console.log('Entro al putProductoProcesoOnlineEntregado')
 
             await axios.put(`https://api-produccion.herokuapp.com/api/actualizaronline/${data[data.length - 1]._id}`, {
 
