@@ -393,21 +393,18 @@
             console.log('me estas haciendo post de productos')
 
 
-            // const respuesta = await axios.get('https://cafe-deer-online.herokuapp.com/api/orders/produccion');
-            // const data = respuesta.data;
-            const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
+            const respuesta = await axios.get('https://cafe-deer-online.herokuapp.com/api/orders/produccion');
             const data = respuesta.data;
+            
 
-            await axios.post('https://api-produccion.herokuapp.com/api/pedido', {
+            await axios.post('https://api-produccion.herokuapp.com/api/online', {
                 // id: data[data.length - 1]._id,
                 // nombreProducto: data[data.length - 1].orderItems[0].name,
                 // cantidad: data[data.length - 1].orderItems[0].quantity,
                 // nombreCliente: data[data.length - 1].shippingAddress.fullName,
                 // idUsuario: data[data.length - 1].user,
                 // direccion: data[data.length - 1].shippingAddress.address,
-                id_pedido: data[data.length - 1].id_pedido,
-                nombreproducto: data[data.length - 1].nombreproducto,
-                cantidad: data[data.length - 1].cantidad,
+                
                 estado: 'Pendiente'
             }, {
                 headers: {
