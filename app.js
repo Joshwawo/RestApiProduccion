@@ -73,18 +73,18 @@ app.get('/api/pedido', (req, res) => {
 });
 //
 
-// app.get('/api/pedidoonline', (req, res) => {
+app.get('/api/pedidoonline', (req, res) => {
 
-//     const sql = 'SELECT id_pedido, id_producto, estado FROM pedidoonline';
-//     conn.query(sql, (error, resultados) => {
-//         if (error) throw error;
-//         if (resultados.length > 0) {
-//             res.json(resultados)
-//         } else {
-//             res.send('Sin resultados en pedidos Online' )
-//         }
-//     });
-// });
+    const sql = 'SELECT id_pedido, id_producto, estado FROM pedidoonline';
+    conn.query(sql, (error, resultados) => {
+        if (error) throw error;
+        if (resultados.length > 0) {
+            res.json(resultados)
+        } else {
+            res.send('Sin resultados en pedidos Online' )
+        }
+    });
+});
 
 
 app.post('/api/pedido', (req, res) => {
