@@ -55,7 +55,7 @@
 
 
 
-            <table class="mauto bg-black text-white md:table-fixed ">
+            <table class="mauto bg-black text-white  ">
                 <thead>
                     <tr>
                         <th>id</th>
@@ -236,6 +236,7 @@
         }
 
         const putProductoProceso = async () => {
+            
             console.log('hola me diste click putProductoProceso')
             const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
             const data = respuesta.data;
@@ -530,7 +531,7 @@
 
             await axios.put(`https://api-produccion.herokuapp.com/api/actualizaronline/${data[data.length - 1]._id}`, {
 
-                estado: 'entregado'
+                estado: 'Proceso'
             }, {
                 headers: {
 
