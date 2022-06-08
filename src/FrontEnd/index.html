@@ -377,8 +377,8 @@
                     <tbody class="">
                     <tr class="text-black text-xs">
                     <th class="bg-blue-300">${baseObj.id}</th>
-                    <th class="bg-red-200 max-w-xl py-1 ">**${baseObj.nombreProducto} (${baseObj.cantidad})** <button class="bg-yellow-300" onclick="putProductoProcesoOnline()">Proceso </button>
-                    <button class="bg-green-300">Listo </button>  </th>
+                    <th class="bg-red-200 max-w-xl py-1 ">**${baseObj.nombreProducto} (${baseObj.cantidad})** <button class="bg-yellow-300" onclick="putProductoProcesoOnlineProceso()">Proceso </button>
+                    <button class="bg-green-300" onclick="putProductoProcesoOnlineListo()">Listo </button>  </th>
                     <th class="bg-green-200" >${baseObj.idUsuario}</th>
                     <th class="bg-amber-200">${baseObj.nombreCliente}</th>
                     <th class="bg-orange-300">${baseObj.idProducto}</th>
@@ -435,10 +435,10 @@
                     // alert('Pedido agregado');
                     // getProductos();
                 })
-                
+
         }
 
-        const putProductoProcesoOnline = async () => {
+        const putProductoProcesoOnlineProceso = async () => {
 
             console.log('Me diste Click desde el putProductoProcesoOnline')
             const respuesta = await axios.get('https://cafe-deer-online.herokuapp.com/api/orders/produccion');
@@ -471,6 +471,43 @@
 
 
         }
+        const putProductoProcesoOnlineListo = async () => {
+
+            console.log('Me diste Click desde el putProductoProcesoOnline')
+            const respuesta = await axios.get('https://cafe-deer-online.herokuapp.com/api/orders/produccion');
+            const data = respuesta.data;
+
+            //asas
+            // data[data.length - 1]._id
+            // `https://api-produccion.herokuapp.com/api/actualizaronline/${data[data.length - 1]._id}`
+
+            await axios.put(`https://api-produccion.herokuapp.com/api/actualizaronline/${data[data.length - 1]._id}`, {
+
+                estado: 'Listo'
+            }, {
+                headers: {
+
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS, PUT",
+                    "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+
+
+                }
+
+            })
+                .then(response => {
+                    console.log(response);
+                    // alert('Pedido agregado');
+                    // getProductos();
+                })
+
+
+        }
+
+
+
+
 
 
 
