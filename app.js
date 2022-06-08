@@ -116,7 +116,7 @@ app.post('/api/online', (req, res) => {
         nombreCliente: req.body.nombreCliente,
         idUsuario: req.body.idUsuario,
         direccion: req.body.direccion,
-        
+
 
     }
 
@@ -198,7 +198,7 @@ app.put('/api/actualizar/:id', (req, res) => {
 app.put('/api/actualizaronline/:id', (req, res) => {
     const { id } = req.params;
     const { estado } = req.body;
-    const sql = `UPDATE pedidoonline SET estado ='${estado}' WHERE id=${id}`;
+    const sql = `UPDATE pedidoonline SET estado ='${estado}' WHERE id='${id}'`;
     args = [id, estado];
 
     conn.query(sql,args ,error => {
