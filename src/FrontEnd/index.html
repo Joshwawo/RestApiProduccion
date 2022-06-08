@@ -416,7 +416,7 @@
                 cantidad: data[data.length - 1].orderItems[0].quantity,
                 nombreCliente: data[data.length - 1].shippingAddress.fullName,
                 idUsuario: data[data.length - 1].user,
-                // idProducto: data[data.length - 1].orderItems[0]._id,
+                idProducto: data[data.length - 1].orderItems[0]._id,
                 direccion: data[data.length - 1].shippingAddress.address,
                 estado: 'Pendiente'
             }, {
