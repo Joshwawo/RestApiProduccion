@@ -56,12 +56,12 @@ app.get('/Pruebas', (req, res) => {
         }
     });
 });
-
+//tacos de kk
 
 app.get('/api/pedido', (req, res) => {
     // res.send('hola desde producto')
 
-    const sql = 'SELECT * FROM pedido';
+    const sql = 'SELECT id_pedido, id_producto, estado FROM pedido';
     conn.query(sql, (error, resultados) => {
         if (error) throw error;
         if (resultados.length > 0) {
