@@ -363,13 +363,13 @@
                     nombreCliente: item.shippingAddress.fullName,
                     idUsuario: item.user,
                     direccion: item.shippingAddress.address,
-                    idPedido: item.orderItems[0]._id,
+                    idProducto: '',
                 }
 
                 item.orderItems.forEach(i => {
                     baseObj.nombreProducto = i.name
                     baseObj.cantidad = i.quantity
-                    baseObj.idPedido = i._id
+                    baseObj.idProducto = i._id
 
                     data_table.push(baseObj)
 
@@ -381,7 +381,7 @@
                     <button class="bg-green-300">Listo </button>  </th>
                     <th class="bg-green-200" >${baseObj.idUsuario}</th>
                     <th class="bg-amber-200">${baseObj.nombreCliente}</th>
-                    <th class="bg-orange-300">${baseObj.idPedido}</th>
+                    <th class="bg-orange-300">${baseObj.idProducto}</th>
                     <th >N/A</th>
                     <th class="bg-orange-300">${baseObj.direccion}</th>
                     </tr>
@@ -416,7 +416,7 @@
                 cantidad: data[data.length - 1].orderItems[0].quantity,
                 nombreCliente: data[data.length - 1].shippingAddress.fullName,
                 idUsuario: data[data.length - 1].user,
-                idPedido: data[data.length - 1].orderItems[0]._id,
+                idProducto: data[data.length - 1].orderItems[0]._id,
                 direccion: data[data.length - 1].shippingAddress.address,
                 estado: 'Pendiente'
             }, {

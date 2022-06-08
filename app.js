@@ -76,7 +76,7 @@ app.get('/api/pedido', (req, res) => {
 app.get('/api/online', (req, res) => {
     // res.send('hola desde producto')
 
-    const sql = 'SELECT id, estado, idPedido FROM pedidoonline';
+    const sql = 'SELECT id, estado, idProducto FROM pedidoonline';
     conn.query(sql, (error, resultados) => {
         if (error) throw error;
         if (resultados.length > 0) {
