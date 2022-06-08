@@ -11,23 +11,69 @@
 </head>
 
 <body class="dark:bg-gray-900 h-screen img">
-    
-        <ul class="flex justify-center">
-            <li class="mr-3">
-                <a class="inline-block py-2 px-4 hover:bg-yellow-600 text-white" href="../FrontEnd/index.html">Pedidos</a>
-            </li>
-            <li class="mr-3">
-                <a class="inline-block   hover:border-gray-200 text-white hover:bg-yellow-600 py-2 px-4"
-                    href="./PedidoOnline.html">Pedidos en proceso </a>
-            </li>
-        
-        </ul>
 
-        <div class="contenedor">
-            
+    <ul class="flex justify-center">
+        <li class="mr-3">
+            <a class="inline-block py-2 px-4 hover:bg-yellow-600 text-white" href="../FrontEnd/index.html">Pedidos</a>
+        </li>
+        <li class="mr-3">
+            <a class="inline-block   hover:border-gray-200 text-white hover:bg-yellow-600 py-2 px-4"
+                href="./PedidoOnline.html">Pedidos en proceso </a>
+        </li>
 
-        </div>
-    
+    </ul>
+
+    <div class="flex justify-center">
+        <button class="bg-red-400 " onclick="getPedidosProceso()">Pedidos </button>
+    </div>
+
+    <div class="contenedor p-20 Listo">
+
+        <table class="bg-orange-300  m-auto ">
+
+            <thead>
+                <p class="text-center text-white text-2xl mb-5 pt-5">Pedido Proceso de envio</p>
+
+                <tr>
+                    <th>id</th>
+                    <th>Nombre Cliente</th>
+                    <th>Direccion</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="Listo">
+
+            </tbody>
+        </table>
+
+
+    </div>
+
+    <div class="contenedor p-14 entregado">
+
+        <table class="bg-orange-300  m-auto ">
+
+            <thead>
+                <p class="text-center text-white text-2xl mb-5 pt-5">Pedido Entregados</p>
+
+                <tr>
+                    <th>id</th>
+                    <th>Nombre Cliente</th>
+                    <th>Direccion</th>
+                    <th>Telefono</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="entregado">
+
+            </tbody>
+        </table>
+
+
+    </div>
+
     <!-- <p></p> -->
 
 
@@ -37,23 +83,62 @@
 
     <script>
 
-        const hola = async () => {
+        //* son pendiente, proceso, 
+        //listo y entregado?
+
+
+        const getPedidosProceso = async () => {
 
 
             try {
-                const respuesta = await axios.get('https://api-produccion.herokuapp.com/api/online');
+                const respuesta = await axios.get('https://api-produccion.herokuapp.com/api/onlinetodo');
                 const data = respuesta.data;
                 console.log(data)
+
+                let listaProducto = '';
+                let listaEntregado = '';
 
                 data.forEach(dato => {
 
                     if (dato.estado == "Listo") {
                         console.log(dato.estado)
+                        console.log(dato.nombreCliente)
+                        console.log(dato.direccion)
+
+                        listaProducto += `
+                        <tbody class="max-w-xl">
+                        <tr class="text-black text-xs">
+                        <th class="bg-blue-300 max-w-xl">${dato.id}</th>
+                        <th class="bg-red-200  py-1 ">${dato.nombreCliente}</th>
+                        
+                        <th class="bg-orange-300">${dato.direccion}</th>
+                        </tr>
+                        </tbody>
+
+                    `;
+                        document.getElementById('Listo').innerHTML = listaProducto;
+
+
 
                     }
 
                     if (dato.estado == "entregado") {
                         console.log(dato.estado)
+                        console.log(dato.nombreCliente)
+                        console.log(dato.direccion)
+                        listaProducto += `
+                        <tbody class="max-w-xl">
+                        <tr class="text-black text-xs">
+                        <th class="bg-blue-300 max-w-xl">${dato.id}</th>
+                        <th class="bg-red-200  py-1 ">${dato.nombreCliente}</th>
+                        
+                        <th class="bg-orange-300">${dato.direccion}</th>
+                        <th >N/A</th>
+                        </tr>
+                        </tbody>
+
+                    `;
+                        document.getElementById('entregado').innerHTML = listaProducto;
                     }
 
 
@@ -70,7 +155,41 @@
 
         }
 
-        hola();
+        const putProductoProcesoOnlineEntregado = async () => {
+
+            console.log('Me diste Click desde el putProductoProcesoOnline')
+            const respuesta = await axios.get('https://cafe-deer-online.herokuapp.com/api/orders/produccion');
+            const data = respuesta.data;
+
+            //asas
+            // data[data.length - 1]._id
+            // `https://api-produccion.herokuapp.com/api/actualizaronline/${data[data.length - 1]._id}`
+
+            await axios.put(`https://api-produccion.herokuapp.com/api/actualizaronline/${data[data.length - 1]._id}`, {
+
+                estado: 'entregado'
+            }, {
+                headers: {
+
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS, PUT",
+                    "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+
+
+                }
+
+            })
+                .then(response => {
+                    console.log(response);
+                    // alert('Pedido agregado');
+                    // getProductos();
+                })
+
+
+        }
+
+        // hola();
 
 
     </script>

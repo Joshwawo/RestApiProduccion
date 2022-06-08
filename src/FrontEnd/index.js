@@ -34,7 +34,7 @@ const getProductos = async () => {
             *NombreProducto
             *Cantidad
             */
-            const productosid =[data.length];
+            const productosid = [data.length];
             const contador = 0;
 
             data.forEach(producto => {
@@ -45,14 +45,14 @@ const getProductos = async () => {
                 //     console.log('pendiente');
                 // }
 
-                
+
                 const id = producto.id_pedido
                 productosid[contador] = id;
-                for(var i =0; i<productosid.length; i++){
-                    if(id == productosid[i]){
+                for (var i = 0; i < productosid.length; i++) {
+                    if (id == productosid[i]) {
                         break;
-                    }else{
-                        
+                    } else {
+
                     }
                 }
                 console.log(id);
@@ -60,7 +60,7 @@ const getProductos = async () => {
                     console.log('pendiente');
                 }
 
-                
+
 
 
                 listaProducto += `
@@ -68,18 +68,16 @@ const getProductos = async () => {
         </tr>
             <tbody class="">
                 <tr class=" bg-lime-100">
-<<<<<<< HEAD
                     <td class="p-3 text-semibol text-black ">${producto.id_pedido}</td>
                     <td class="p-3 text-semibol text-black ">${producto.nombreproducto} <input type="checkbox"  </td>
                     <td id="pendiente" class="p-3 text-semibol text-black ">${producto.cantidad}</td>
                     <td id="" class="p-3 text-semibol text-black ">${producto.estado_Pedido} <input type="checkbox" id="${producto.id_pedido}"   onclick="putProducto()"> </td>
-=======
                 <td class="p-3 text-semibol text-black ">${producto.id_pedido}</td>
                 <td class="p-3 text-semibol text-black ">${producto.nombreproducto} <input type="checkbox" name="" id="coso+${producto.id_pedido}"> <input type="checkbox" name="" id="${producto.id_pedido}"> <input type="checkbox" name="" id="${producto.id_pedido}"> <input type="checkbox" name="" id="${producto.id_pedido}">  </td>
                 <td id="pendiente" class="p-3 text-semibol text-black ">${producto.cantidad}</td>
-                ` 
-                console.log(producto.id_pedido);`
->>>>>>> f56fac1720d65835dc2be6c9f8dfde262262f390
+                `
+                console.log(producto.id_pedido); `
+
                     
                 </tr>
             </tbody>
@@ -104,7 +102,7 @@ const getProductos = async () => {
         let test = data[data.length - 1].id_pedido;
 
 
-    
+
 
         console.log(data[data.length - 1].nombreproducto);
 
