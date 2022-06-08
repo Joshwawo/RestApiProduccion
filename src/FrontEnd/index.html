@@ -428,6 +428,7 @@
                     // alert('Pedido agregado');
                     // getProductos();
                 })
+                console.log(id, nombreProducto, cantidad, nombreCliente, idUsuario, direccion, estado)
         }
 
         const putProductoProcesoOnline = async () => {
@@ -438,11 +439,11 @@
 
             //asas
             // data[data.length - 1]._id
-            //`https://api-produccion.herokuapp.com/api/actualizaronline/${data[data.length - 1]._id}`
+            // `https://api-produccion.herokuapp.com/api/actualizaronline/${data[data.length - 1]._id}`
 
-            await axios.put(`https://api-produccion.herokuapp.com/api/actualizaronline/1`, {
+            await axios.put(`https://api-produccion.herokuapp.com/api/actualizaronline/${data[data.length - 1]._id}`, {
 
-                estado: 'Preparado'
+                estado: 'Proceso'
             }, {
                 headers: {
 
