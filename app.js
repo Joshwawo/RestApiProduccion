@@ -47,11 +47,11 @@ app.get('/', (req, res) => {
 app.get('/Pruebas', (req, res) => {
     //res.send('hola desde la api de produccion')
     const prueba = "Select id_pedido from pedido where id_pedido = 1794";
-    conn.query(prueba, (error, resultadoPrueba)=>{        
-        if(error) throw error;
-        if(resultadoPrueba.length > 0){
+    conn.query(prueba, (error, resultadoPrueba) => {
+        if (error) throw error;
+        if (resultadoPrueba.length > 0) {
             res.json(resultadoPrueba)
-        }else{
+        } else {
             console.log("No se encontro el registro marcado")
         }
     });
@@ -87,6 +87,25 @@ app.get('/api/online', (req, res) => {
     });
 });
 
+app.post('/api/online', (req, res) => {
+    const sql = 'INSERT INTO pedidoonline SET ?';
+    const pedidoObjP = {
+        id: req.body.id,
+        nombreProducto: req.body.nombreProducto,
+        cantidad: req.body.cantidad,
+        nombreCliente: req.body.nombreCliente,
+        idUsuario: req.body.idUsuario,
+        estado: req.body.estado,
+        direccion: req.body.direccion,
+    }
+
+    conn.query(sql, pedidoObjP, error => {
+        if (error) throw error;
+        res.send('Pedido Creado');
+
+    });
+});
+
 //asd
 app.post('/api/pedido', (req, res) => {
     const sql = 'INSERT INTO pedido SET ?';
@@ -105,24 +124,7 @@ app.post('/api/pedido', (req, res) => {
     });
 });
 
-app.post('/api/pedidonline', (req, res) => {
-    const sql = 'INSERT INTO pedidoonline SET ?';
-    const pedidoObjP = {
-        id: req.body.id,
-        nombreProducto: req.body.nombreProducto,
-        cantidad: req.body.cantidad,
-        nombreCliente: req.body.nombreCliente,
-        idUsuario: req.body.idUsuario,
-        estado: req.body.estado,
-        direccion: req.body.direccion,
-    }
 
-    conn.query(sql, pedidoObjP, error => {
-        if (error) throw error;
-        res.send('Pedido Creado');
-
-    });
-});
 
 // app.post('/api/pedidonline', (req, res) => {
 //     const sql = 'INSERT INTO pedidoonline SET ?';
@@ -155,13 +157,13 @@ app.put('/api/actualizar/:id', (req, res) => {
     }
 })
 
-app.delete('/api/delete/:id', (req,res)=>{
+app.delete('/api/delete/:id', (req, res) => {
     const { id } = req.params;
 
-    const sql = `DELETE FROM pedido WHERE id_pedido=${ id }`;
+    const sql = `DELETE FROM pedido WHERE id_pedido=${id}`;
 
-    conn.query(sql, error=>{
-        if(error) throw error;
+    conn.query(sql, error => {
+        if (error) throw error;
         res.send('Pedido eliminado');
 
     })
@@ -176,6 +178,6 @@ app.listen(PORT, () => {
 /*
 !Zona para commits
 asdasda
-Zona
+Zonaasdaasd
 
 */
