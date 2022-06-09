@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    <P class="bg-purple-700">-----------------No pasar de aqui-----------------------------</P>
+    <!-- <P class="bg-purple-700">-----------------No pasar de aqui-----------------------------</P> -->
 
 
     <div class="div pt-10">
@@ -390,14 +390,14 @@
 
                     listaProducto += `
                     <tbody class="">
-                    <tr class="text-black text-xs">
-                    <th class="bg-yellow-100">${baseObj.id}</th>
-                    <th class="bg-yellow-100 max-w-xl py-1 ">**${baseObj.nombreProducto} (${baseObj.cantidad})** <button class="bg-yellow-300" onclick="putProductoProcesoOnlineProceso()">Proceso </button>
-                    <button class="bg-green-200" onclick="putProductoProcesoOnlineListo()">Listo </button>  </th>
-                    <th class="bg-yellow-100" >${baseObj.idUsuario}</th>
-                    <th class="bg-yellow-100">${baseObj.nombreCliente}</th>
-                    <th class="bg-yellow-100">${baseObj.idProducto}</th>
-                    <th class="bg-yellow-100">${baseObj.direccion}</th>
+                    <tr class="text-black text-xs ">
+                    <th class="bg-yellow-100 px-2">${baseObj.id}</th>
+                    <th class="bg-yellow-100 px-2 max-w-xl py-1 ">${baseObj.nombreProducto} <span class="text-red-600 font-black">(${baseObj.cantidad})</span> <button class="bg-yellow-400 px-2-300 rounded-md px-1 py-1" onclick="putProductoProcesoOnlineProceso()">Proceso </button>
+                    <button class="bg-green-400 rounded-md text-black font-semibold px-1 py-1" onclick="putProductoProcesoOnlineListo()">Listo </button> </th>
+                    <th class="bg-yellow-100 px-2" >${baseObj.idUsuario}</th>
+                    <th class="bg-yellow-100 px-2">${baseObj.nombreCliente}</th>
+                    <th class="bg-yellow-100 px-2">${baseObj.idProducto}</th>
+                    <th class="bg-yellow-100 px-2">${baseObj.direccion}</th>
                     </tr>
                     </tbody>
 

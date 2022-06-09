@@ -25,12 +25,11 @@
 
     <div class="flex justify-center pt-14">
         <button class="bg-yellow-400 rounded-sm px-1 py-1 " onclick="getPedidosProceso()">Pedidos </button>
-        <button class="bg-yellow-600 rounded-sm px-1 py-1 " onclick="putProductoProcesoOnlineEntregado()">PUT </button>
     </div>
 
     <div class="contenedor  Listo">
 
-        <table class="bg-orange-300  m-auto ">
+        <table class="bg-black text-white m-auto ">
 
             <thead>
                 <p class="text-center text-white text-2xl mb-5 pt-5">Pedido Proceso de envio</p>
@@ -39,6 +38,7 @@
                     <th>id</th>
                     <th>Nombre Cliente</th>
                     <th>Direccion</th>
+                    <!-- <th>Accion</th> -->
                 </tr>
 
             </thead>
@@ -53,7 +53,7 @@
 
     <div class="contenedor p-14 entregado">
 
-        <table class="bg-orange-300  m-auto ">
+        <table class="bg-black text-white  m-auto ">
 
             <thead>
                 <p class="text-center text-white text-2xl mb-5 pt-5">Pedido Entregados</p>
@@ -62,7 +62,7 @@
                     <th>id</th>
                     <th>Nombre Cliente</th>
                     <th>Direccion</th>
-                    <th>Telefono</th>
+
                 </tr>
 
             </thead>
@@ -102,15 +102,16 @@
                 data.forEach(dato => {
 
                     if (dato.estado == "Listo") {
-                     
+
 
                         listaProducto += `
                         <tbody class="max-w-xl">
                         <tr class="text-black text-xs">
-                        <th class="bg-blue-300 max-w-xl">${dato.id}</th>
-                        <th class="bg-red-200  py-1 ">${dato.nombreCliente}</th>
+                        <th class="bg-yellow-100/100 px-2 max-w-xl">${dato.id}</th>
+                        <th class="bg-yellow-100/100 px-2 py-1 ">${dato.nombreCliente}</th>
+                        <th class="bg-yellow-100/100 px-2">${dato.direccion} <button class="bg-green-200 rounded-sm px-1 py-1  " onclick="putProductoProcesoOnlineEntregado()">Entregar </button></th>
                         
-                        <th class="bg-orange-300">${dato.direccion}</th>
+                        
                         </tr>
                         </tbody>
 
@@ -122,13 +123,14 @@
                     }
 
                     if (dato.estado == "entregado") {
-                        
+
                         listaProducto += `
                         <tbody class="max-w-xl">
                         <tr class="text-black text-xs">
-                        <th class="bg-blue-300 max-w-xl">${dato.id}</th>
-                        <th class="bg-red-200  py-1 ">${dato.nombreCliente}</th>
-                        <th class="bg-orange-300">${dato.direccion} </th>
+                        <th class="bg-yellow-100/100 px-2 max-w-xl">${dato.id}</th>
+                        <th class="bg-yellow-100/100 px-2 py-1 ">${dato.nombreCliente}</th>
+                        <th class="bg-yellow-100/100 px-2">${dato.direccion} <button class="bg-green-500 rounded-sm px-1 py-1 cursor-none " onclick="">Entregado </button> </th>
+
                         </tr>
                         </tbody>
 
@@ -157,10 +159,10 @@
             const data = respuesta.data;
             estado: data[data.length - 1].id,
 
-            //asas
-            // data[data.length - 1]._id
-            // `https://api-produccion.herokuapp.com/api/actualizaronline/${data[data.length - 1]._id}`
-            console.log('Entro al putProductoProcesoOnlineEntregado')
+                //asas
+                // data[data.length - 1]._id
+                // `https://api-produccion.herokuapp.com/api/actualizaronline/${data[data.length - 1]._id}`
+                console.log('Entro al putProductoProcesoOnlineEntregado')
 
             await axios.put(`https://api-produccion.herokuapp.com/api/actualizaronline/${data[data.length - 1].id}`, {
 
