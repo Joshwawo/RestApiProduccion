@@ -151,6 +151,24 @@ app.post('/api/local', (req, res) => {
     });
 });
 
+//!Endpoint para actualizar un pedido
+app.put('/api/actualizaronlocal/:id', (req, res) => {
+    const { id } = req.params;
+    const { estado } = req.body;
+    const sql = `UPDATE pedidolocal SET estado ='${estado}' WHERE id='${id}'`;
+    args = [id, estado];
+
+    conn.query(sql,args ,error => {
+        if (error) throw error;
+        res.send(req.body);
+
+    });
+
+    if (!id) {
+        res.send('no existe el pedido con ese id')
+    }
+})
+
 
 
 
