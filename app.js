@@ -134,26 +134,26 @@ app.get('/api/localtodo', (req, res) => {
     });
 });
 
+//!Endpoint para insetar un nuevo pedido
+app.post('/api/local', (req, res) => {
+    const sql = 'INSERT INTO pedidolocal SET ?';
+    const baseObj = {
+        id: req.body.id,
+        estado: req.body.estado,
+        NombreProducto: req.body.NombreProducto,
+        Cantidad: req.body.Cantidad,
+    }
 
-//
-// app.post('/api/online', (req, res) => {
-//     const sql = 'INSERT INTO pedidoonline SET ?';
-//     const baseObj = {
-//         id: req.body.id,
-//         nombreProducto: req.body.nombreProducto,
-//         cantidad: req.body.cantidad,
-//         nombreCliente: req.body.nombreCliente,
-//         idUsuario: req.body.idUsuario,
-//         estado: req.body.estado,
-//         direccion: req.body.direccion,
-//     }
+    conn.query(sql, baseObj, error => {
+        if (error) throw error;
+        res.send('Pedido Creado');
 
-//     conn.query(sql, baseObj, error => {
-//         if (error) throw error;
-//         res.send('Pedido Creado');
+    });
+});
 
-//     });
-// });
+
+
+
 
 app.post('/api/online', (req, res) => {
     const sql = 'INSERT INTO pedidoonline SET ?';
@@ -177,22 +177,6 @@ app.post('/api/online', (req, res) => {
     });
 });
 
-//!Endpoint para insetar un nuevo pedido
-app.post('/api/local', (req, res) => {
-    const sql = 'INSERT INTO pedidolocal SET ?';
-    const baseObj = {
-        id: req.body.id,
-        estado: req.body.estado,
-        NombreProducto: req.body.NombreProducto,
-        Cantidad: req.body.Cantidad,
-    }
-
-    conn.query(sql, baseObj, error => {
-        if (error) throw error;
-        res.send('Pedido Creado');
-
-    });
-});
 
 //asd
 app.post('/api/pedido', (req, res) => {

@@ -207,20 +207,28 @@
 
         }//!Fin getProductos
 
+        /*
+        Esta parte es el post a venta local
+        */
 
         const postProductos = async () => {
             console.log('me estas haciendo post de productos')
 
             const respuesta = await axios.get('https://solicitud-de-pedido.herokuapp.com/api/pedidos/');
-            const data = respuesta.data;
-            await axios.post('https://api-produccion.herokuapp.com/api/pedido', {
+            const data = respuesta.data.pedidos;
+
+            console.log(data);
+            await axios.post('https://api-produccion.herokuapp.com/api/local', {
                 id: data[data.length - 1].id,
                 NombreProducto: data[data.length - 1].NombreProducto,
                 Cantidad: data[data.length - 1].Cantidad,
                 estado: 'Pendiente'
             }, {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+                    "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
 
                 }
 
@@ -237,7 +245,7 @@
         }
 
         const putProductoProceso = async () => {
-            
+
             console.log('hola me diste click putProductoProceso')
             const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
             const data = respuesta.data;
