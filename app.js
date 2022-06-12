@@ -73,6 +73,24 @@ app.get('/api/pedido', (req, res) => {
 });
 //
 
+//?Endpoint para consultar  un nuevo pedido
+app.get('/api/pedidolocal', (req, res) => {
+    // res.send('hola desde producto')
+
+    const sql = 'SELECT id_pedido, id_producto, estado FROM pedidolocal';
+    conn.query(sql, (error, resultados) => {
+        if (error) throw error;
+        if (resultados.length > 0) {
+            res.json(resultados)
+        } else {
+            res.send('Sin resultados en pedidos')
+        }
+    });
+});
+
+
+
+
 app.get('/api/online', (req, res) => {
     // res.send('hola desde producto')
 
@@ -142,6 +160,22 @@ app.post('/api/online', (req, res) => {
     });
 });
 
+//!Endpoint para insetar un nuevo pedido
+app.post('/api/local', (req, res) => {
+    const sql = 'INSERT INTO pedidolocal SET ?';
+    const baseObj = {
+        id: req.body.id,
+        estado: req.body.estado,
+        NombreProducto: req.body.NombreProducto,
+        Cantidad: req.body.Cantidad,
+    }
+
+    conn.query(sql, baseObj, error => {
+        if (error) throw error;
+        res.send('Pedido Creado');
+
+    });
+});
 
 //asd
 app.post('/api/pedido', (req, res) => {

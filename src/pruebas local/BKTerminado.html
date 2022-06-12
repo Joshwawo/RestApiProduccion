@@ -95,9 +95,8 @@
             //sdasd
             try {
                 //!Api de practica 
-                const respuesta = await axios.get('https://solicitud-de-pedido.herokuapp.com/api/pedidos/');
+                const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
                 const data = respuesta.data;
-                console.log(data);
 
                 if (respuesta.status === 200) {
                     let listaProducto = '';
@@ -108,7 +107,7 @@
                     *Cantidad
                     */
                     //
-                    data.pedidos.forEach(producto => {
+                    data.forEach(producto => {
                         listaProducto += `
                         <div id="card">
         <div class="flex items-center justify-center py-4 px-4">
@@ -122,7 +121,7 @@
                     </div>
                     <a href="javascript:void(0)"
                         class="focus:outline-none focus:underline focus:text-gray-400 text-gray-600 dark:text-gray-100 ">
-                        <p class=" text-sm font-medium pl-3">ID: ${producto.id} </p>
+                        <p class=" text-sm font-medium pl-3">ID: ${producto.id_pedido} </p>
                     </a>
                 </div>
                 <p class="text-sm font-medium text-indigo-700"> </p>
@@ -136,7 +135,7 @@
                     <a href="javascript:void(0)"
                         class="focus:outline-none focus:underline focus:text-gray-400 text-gray-600 dark:text-gray-100 ">
                         <p class=" text-sm font-medium pl-3">Nombre Producto </p>
-                        <p class=" px-2.5">${producto.NombreProducto} <span>(${producto.Cantidad}) <input type="checkbox" name="" id="" class="accent-amber-600 pb-3"> </span> </p>
+                        <p class=" px-2.5">${producto.nombreproducto} <span>(${producto.cantidad}) <input type="checkbox" name="" id="" class="accent-amber-600 pb-3"> </span> </p>
                         
                                 
                     </a>
@@ -211,12 +210,12 @@
         const postProductos = async () => {
             console.log('me estas haciendo post de productos')
 
-            const respuesta = await axios.get('https://solicitud-de-pedido.herokuapp.com/api/pedidos/');
+            const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
             const data = respuesta.data;
             await axios.post('https://api-produccion.herokuapp.com/api/pedido', {
-                id: data[data.length - 1].id,
-                NombreProducto: data[data.length - 1].NombreProducto,
-                Cantidad: data[data.length - 1].Cantidad,
+                id_pedido: data[data.length - 1].id_pedido,
+                nombreproducto: data[data.length - 1].nombreproducto,
+                cantidad: data[data.length - 1].cantidad,
                 estado: 'Pendiente'
             }, {
                 headers: {

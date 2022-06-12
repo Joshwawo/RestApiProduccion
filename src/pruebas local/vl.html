@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/public/output.css" rel="stylesheet">
+    <link href="/src/JS.css" rel="stylesheet">
+    <title>Prueba Api Local</title>
+</head>
+
+<body class="bg-black md:bg-cyan-300  img">
+    <h1 class="text-3xl text-center text-green-500 ">Hola mundo</h1>
+    <div class="flex justify-center bg-slate-600 hover:bg-red-400">
+    <button class="bg-orange-300 rounded-sm py-1 px-1 mx-1 hover:bg-sky-700">SOY UN BOTON</button>
+    </div>
+    <div class=" ">
+        <p class="text-center text-white text-3xl mb-5 pt-5">Pedidos Venta local</p>
+        <div class=" flex justify-center mb-10">
+            <button class="bg-yellow-400 rounded-sm px-1 py-1" onclick="getProductos()">Pedidos</button>
+            <button class=" rounded-sm px-1 py-1" " onclick=" postProductos()"> </button>
+        </div>
+        <div id="productos" class="">
+
+        </div>
+    </div>
+
+    <!-- <script src="./vl.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+
+        const getProductos = async () => {
+            console.log('me estas haciendo getProductos');
+            //sdasd
+            try {
+                //!Api de practica 
+                const respuesta = await axios.get('https://solicitud-de-pedido.herokuapp.com/api/pedidos/');
+                const data = respuesta.data;
+
+                console.log(data);
+                console.log(data.pedidos);
+                // console.log(data.pedidos[0].NombreProducto)
+
+                // data.forEach(element => {
+                //     console.log(element.pedidos[0].NombreProducto)
+                // });
+
+
+                if (respuesta.status === 200) {
+                    let listaProducto = '';
+                    /*
+                    !Lo que voy a recibir de la API
+                    *Id_pedido
+                    *NombreProducto
+                    *Cantidad
+                    */
+                    //
+                    data.pedidos.forEach(pedidos => {
+
+                        listaProducto += `
+                        <div id="card">
+        <div class="flex items-center justify-center py-4 px-4">
+        <div class="md:w-96 rounded-md shadow-lg p-5 bg-black/50 ">
+            <h1 class="pt-2 pb-7 text-gray-800 dark:text-gray-100 font-bold text-lg">Pedido</h1>
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="">
+                        <!-- <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/card3-svg1.svg" alt="cart" /> -->
+
+                    </div>
+                    <a href="javascript:void(0)"
+                        class="focus:outline-none focus:underline focus:text-gray-400 text-gray-600 dark:text-gray-100 ">
+                        <p class=" text-sm font-medium pl-3">ID: ${pedidos.id} </p>
+                    </a>
+                </div>
+                <p class="text-sm font-medium text-indigo-700"> </p>
+            </div>
+            <div class="flex items-center justify-between pt-5">
+                <div class="flex items-center">
+                    <div class="">
+                        <!-- <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/card3-svg2.svg" alt="message" /> -->
+
+                    </div>
+                    <a href="javascript:void(0)"
+                        class="focus:outline-none focus:underline focus:text-gray-400 text-gray-600 dark:text-gray-100 ">
+                        <p class=" text-sm font-medium pl-3">Nombre Producto </p>
+                        <p class=" px-2.5">${pedidos.NombreProducto} <span>(${pedidos.Cantidad}) <input type="checkbox" name="" id="" class="accent-amber-600 pb-3"> </span> </p>
+                        
+                                
+                    </a>
+                </div>
+            </div>
+            <div class="flex items-center justify-between pt-5">
+                <div class="flex items-center">
+                    <div class="">
+                        <!-- <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/card3-svg1.svg" alt="cart" /> -->
+
+                    </div>
+                    <a href="javascript:void(0)"
+                        class="focus:outline-none focus:underline focus:text-gray-400 text-gray-600 dark:text-gray-100 hover:text-gray-400">
+                        <!-- <p class=" text-sm font-medium pl-3">Cantidad <span class="bg-yellow-400 text-red-700 "></span></p> -->
+                    </a>
+                </div>
+                <!-- <p class="text-sm font-medium text-indigo-700">$205</p> -->
+            </div>
+            <div class="flex items-center justify-between pt-5">
+                <div class="flex items-center">
+                    <div class="">
+                        <!-- <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/card3-svg3.svg" alt="text" /> -->
+
+                    </div>
+                    <a href="javascript:void(0)"
+                        class="focus:outline-none focus:underline focus:text-gray-400 text-gray-600 dark:text-gray-100 hover:text-gray-400">
+                        <!-- <p class=" text-sm font-medium pl-3">Invoice generated</p> -->
+                    </a>
+                </div>
+                <a href="javascript:void(0)"
+                    class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-800 rounded-md focus:text-indigo-800 hover:text-indigo-800 text-indigo-700">
+                    <!-- <p class="text-sm font-medium cursor-pointer ">View</p> -->
+                </a>
+
+            </div>
+            <div class=" flex justify-center gap-4 ">
+                <button class="bg-yellow-300 my-5 rounded-md w-40" onclick="putProductoProceso()">Proceso</button>
+                <button class="bg-green-300 my-5 rounded-md w-40" onclick="putProductoListo()">Listo</button>
+            </div>
+        </div>
+
+    </div>
+    </div>
+        
+            `;
+
+                        document.getElementById('productos').innerHTML = listaProducto;
+
+
+                    });
+
+                    // const putDato2 = document.getElementById('putDato');
+                    // putDato2.addEventListener('click', putProducto);
+
+
+                    // console.log(data[0].id_pedido);
+                }
+
+            } catch (error) {
+                console.log(error);
+            }
+
+
+
+            // getProductos();
+
+
+
+        }//!Fin getProductos
+
+    </script>
+
+</body>
+
+</html>
