@@ -247,13 +247,18 @@
         const putProductoProceso = async () => {
 
             console.log('hola me diste click putProductoProceso')
-            const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
-            const data = respuesta.data;
+            const respuesta = await axios.get('https://solicitud-de-pedido.herokuapp.com/api/pedidos/');
+            const data = respuesta.data.pedidos;
+            // console.log(data[data.length - 1].id);
+
+            // console.log(data[data.length - 1].id);
+            // console.log(data.pedidos.id);
+
 
             try {
                 //!Api de practica
 
-                await axios.put(`https://api-produccion.herokuapp.com/api/actualizar/${data[data.length - 1].id_pedido}`, {
+                await axios.put(`https://api-produccion.herokuapp.com/api/actualizaronlocal/${data[data.length - 1].id}`, {
                     estado: 'Proceso'
 
                 }), {
@@ -275,16 +280,21 @@
 
         const putProductoListo = async () => {
             console.log('hola me diste click putProductoListo')
-            const respuesta = await axios.get('https://ventas-local-api.herokuapp.com/pedido');
-            const data = respuesta.data;
+            const respuesta = await axios.get('https://solicitud-de-pedido.herokuapp.com/api/pedidos/');
+            const data = respuesta.data.pedidos;
+            // console.log(data[data.length - 1].id);
+
+            // console.log(data[data.length - 1].id);
+            // console.log(data.pedidos.id);
+
+
             try {
-                id_pedido: data[data.length - 1].id_pedido,
-                    //!Api de practica 
+                //!Api de practica
 
-                    await axios.put(`https://api-produccion.herokuapp.com/api/actualizar/${data[data.length - 1].id_pedido}`, {
-                        estado: 'Listo'
+                await axios.put(`https://api-produccion.herokuapp.com/api/actualizaronlocal/${data[data.length - 1].id}`, {
+                    estado: 'listo'
 
-                    }), {
+                }), {
                     headers: {
                         'Content-Type': 'application/json',
                     }
